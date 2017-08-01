@@ -1,31 +1,29 @@
 package com.countries.model;
 
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CountryResponse {
-	
-	@XmlElement(name="country")
-	private Country country;
+public class CountriesResponse {
+	@XmlElement(name="countries")
+	private List<Country> countries;
 
-	public CountryResponse() {
+	public CountriesResponse() {
 		super();
 	}
 
-	public Country getCountry() {
-		return country;
+	public List<Country> getCountries() {
+		return countries;
 	}
 
-	public void setCountry(Country country) {
-		this.country = country;
+	public void setCountries(List<Country> countries) {
+		this.countries = countries;
 	}
-
-	
 
 	
 

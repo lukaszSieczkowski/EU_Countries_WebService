@@ -9,24 +9,20 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CountryRequest {
 	
-	@XmlElement(name="id", required=true)
-	private long id;
+	@XmlElement(name="countryCode", required=true)
+	private String countryCode;
 
 	public CountryRequest() {
 		super();
 	}
 
-	public long getId() {
-		return id;
+	public String getCountryCode() {
+		return countryCode;
+	}
+	
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	@Override
-	public String toString() {
-		return "CountryRequest [id=" + id + "]";
-	}
 	
 }

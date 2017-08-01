@@ -9,28 +9,30 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Country {
 	
-	@XmlElement(name="id")
-	private long id;
+	
 	@XmlElement(name="countryName")
 	private String countryName;
+	
+	@XmlElement(name="countryCode")
+	private String countryCode;
+	
 	public Country() {
 		super();
 	}
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
+	
 	public String getCountryName() {
 		return countryName;
 	}
 	public void setCountryName(String countryName) {
 		this.countryName = countryName;
 	}
-	@Override
-	public String toString() {
-		return "Country [id=" + id + ", countryName=" + countryName + "]";
+
+	public String getCountryCode() {
+		return countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
 	}
 	
 }
