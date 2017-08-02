@@ -1,9 +1,7 @@
 package com.countries.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,7 +12,6 @@ import javax.persistence.Table;
 @Table(name = "country")
 public class CountryEntity {
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_country")
@@ -23,8 +20,20 @@ public class CountryEntity {
 	private String countryName;
 	@Column(name = "code_country")
 	private String countryCode;
-	@OneToOne(mappedBy="country")
+	@OneToOne(mappedBy = "country")
 	private CountryDetailsEntity details;
+	@OneToOne(mappedBy = "country")
+	private GrosDomesticProductYearToYear grosDomesticProductYearToYear;
+	@OneToOne(mappedBy = "country")
+	private Population population;
+	@OneToOne(mappedBy = "country")
+	private Inflation inflation;
+	@OneToOne(mappedBy = "country")
+	private InterestRates interestRates;
+	@OneToOne(mappedBy = "country")
+	private Unemployment unemployment;
+	@OneToOne(mappedBy = "country")
+	private Export export;
 
 	public CountryEntity() {
 		super();
@@ -54,7 +63,6 @@ public class CountryEntity {
 		this.countryCode = countryCode;
 	}
 
-	
 	public CountryDetailsEntity getDetails() {
 		return details;
 	}
@@ -63,8 +71,52 @@ public class CountryEntity {
 		this.details = details;
 	}
 
-	@Override
-	public String toString() {
-		return "Country [id=" + id + ", countryName=" + countryName + "]";
+	public GrosDomesticProductYearToYear getGrosDomesticProductYearToYear() {
+		return grosDomesticProductYearToYear;
 	}
+
+	public void setGrosDomesticProductYearToYear(GrosDomesticProductYearToYear grosDomesticProductYearToYear) {
+		this.grosDomesticProductYearToYear = grosDomesticProductYearToYear;
+	}
+
+	public Population getPopulation() {
+		return population;
+	}
+
+	public void setPopulation(Population population) {
+		this.population = population;
+	}
+
+	public Inflation getInflation() {
+		return inflation;
+	}
+
+	public void setInflation(Inflation inflation) {
+		this.inflation = inflation;
+	}
+
+	public InterestRates getInterestRates() {
+		return interestRates;
+	}
+
+	public void setInterestRates(InterestRates interestRates) {
+		this.interestRates = interestRates;
+	}
+
+	public Unemployment getUnemployment() {
+		return unemployment;
+	}
+
+	public void setUnemployment(Unemployment unemployment) {
+		this.unemployment = unemployment;
+	}
+
+	public Export getExport() {
+		return export;
+	}
+
+	public void setExport(Export export) {
+		this.export = export;
+	}
+
 }
