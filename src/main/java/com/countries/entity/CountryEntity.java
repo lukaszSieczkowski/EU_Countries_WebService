@@ -1,25 +1,30 @@
 package com.countries.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="country")
+@Table(name = "country")
 public class CountryEntity {
-	
+
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_country")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_country")
 	private long id;
-	@Column(name="name_country")
+	@Column(name = "name_country")
 	private String countryName;
-	@Column(name="code_country")
+	@Column(name = "code_country")
 	private String countryCode;
+	@OneToOne(mappedBy="country")
+	private CountryDetailsEntity details;
 
 	public CountryEntity() {
 		super();
@@ -47,6 +52,15 @@ public class CountryEntity {
 
 	public void setCountryCode(String countryCode) {
 		this.countryCode = countryCode;
+	}
+
+	
+	public CountryDetailsEntity getDetails() {
+		return details;
+	}
+
+	public void setDetails(CountryDetailsEntity details) {
+		this.details = details;
 	}
 
 	@Override

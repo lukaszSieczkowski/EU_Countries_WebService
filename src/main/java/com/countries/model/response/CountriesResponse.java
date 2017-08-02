@@ -1,4 +1,4 @@
-package com.countries.model;
+package com.countries.model.response;
 
 import java.util.List;
 
@@ -7,10 +7,12 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import com.countries.model.Country;
+
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CountriesResponse {
-	@XmlElement(name="countries")
+	@XmlElement(name = "countries")
 	private List<Country> countries;
 
 	public CountriesResponse() {
@@ -24,7 +26,5 @@ public class CountriesResponse {
 	public void setCountries(List<Country> countries) {
 		this.countries = countries;
 	}
-
-	
 
 }

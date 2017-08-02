@@ -1,4 +1,4 @@
-package com.countries.model;
+package com.countries.model.request;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -7,15 +7,12 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Country {
+public class CountryNameRequest {
 
-	@XmlElement(name = "countryName")
+	@XmlElement(name = "countryName", required = true)
 	private String countryName;
 
-	@XmlElement(name = "countryCode")
-	private String countryCode;
-
-	public Country() {
+	public CountryNameRequest() {
 		super();
 	}
 
@@ -25,14 +22,6 @@ public class Country {
 
 	public void setCountryName(String countryName) {
 		this.countryName = countryName;
-	}
-
-	public String getCountryCode() {
-		return countryCode;
-	}
-
-	public void setCountryCode(String countryCode) {
-		this.countryCode = countryCode;
 	}
 
 }

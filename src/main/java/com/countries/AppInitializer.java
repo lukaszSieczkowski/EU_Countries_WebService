@@ -2,8 +2,6 @@ package com.countries;
 
 import javax.servlet.Filter;
 
-
-
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -22,7 +20,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	 */
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-	
+
 		return new Class[] { WebConfiguration.class };
 	}
 
@@ -33,6 +31,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	protected String[] getServletMappings() {
 		return new String[] { "/" };
 	}
+
 	/**
 	 * UTF-8 filter
 	 */
