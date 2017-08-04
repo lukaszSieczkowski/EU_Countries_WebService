@@ -15,5 +15,4 @@ public interface CountryRepository {
 	
 	public List<CountryEntity> findCountries();
 	
-	
 }

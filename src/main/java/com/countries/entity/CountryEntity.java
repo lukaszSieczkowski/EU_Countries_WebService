@@ -31,7 +31,7 @@ public class CountryEntity {
 	@OneToOne(mappedBy = "country")
 	private InterestRates interestRates;
 	@OneToOne(mappedBy = "country")
-	private Unemployment unemployment;
+	private UnemploymentEntity unemployment;
 	@OneToOne(mappedBy = "country")
 	private Export export;
 
@@ -103,11 +103,11 @@ public class CountryEntity {
 		this.interestRates = interestRates;
 	}
 
-	public Unemployment getUnemployment() {
+	public UnemploymentEntity getUnemployment() {
 		return unemployment;
 	}
 
-	public void setUnemployment(Unemployment unemployment) {
+	public void setUnemployment(UnemploymentEntity unemployment) {
 		this.unemployment = unemployment;
 	}
 
