@@ -46,7 +46,18 @@ public class CountryRepositoryImpl implements CountryRepository {
 		entityManager.close();
 		return countries;
 	}
-
+	
+	public List<Object[]> findUnemploymentByYear(int year){
+		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("myPersistanceUnit");
+		EntityManager entityManager = emFactory.createEntityManager();
+		List<Object[]> object = entityManager.createQuery("SELECT distinct c.countryName,u.unemployment_"+year+" FROM CountryEntity c JOIN UnemploymentEntity u ON c.id = u.country ").getResultList();
+		for(Object[] p:object){
+			String countryName = (String) p[0];
+			double unemployment = (double) p[1];
+		}
+		entityManager.close();
+		return object;
+	}
 	
 	
 	

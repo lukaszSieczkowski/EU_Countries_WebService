@@ -15,4 +15,6 @@ public interface CountryRepository {
 	
 	public List<CountryEntity> findCountries();
 	
+	public List<Object[]> findUnemploymentByYear(int year);
+	
 }

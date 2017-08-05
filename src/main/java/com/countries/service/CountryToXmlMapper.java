@@ -10,7 +10,10 @@ import com.countries.entity.CountryEntity;
 import com.countries.entity.UnemploymentEntity;
 import com.countries.model.Country;
 import com.countries.model.CountryDetails;
+import com.countries.model.CountryNameAndUnemployment;
+import com.countries.model.CountryNameAndYear;
 import com.countries.model.Unemployment;
+import com.countries.model.response.UnemploymentByCountryNameAll;
 import com.countries.model.response.UnemploymentByCountryNameAndYearResponse;
 
 @Service
@@ -115,6 +118,26 @@ public class CountryToXmlMapper {
 		}
 		}
 		return unemploymentByCountryNameAndYearResponse;
+	}
+	
+	public UnemploymentByCountryNameAll conventObjectToCountryNameAndYerListResponse(List<Object[]>object){
+		
+		UnemploymentByCountryNameAll unemploymentByCountryNameAll = new UnemploymentByCountryNameAll();
+		List<CountryNameAndUnemployment> countryNameAndUnemploymentList = new ArrayList<>();
+		for(Object[] p:object){
+			
+			String countryName = (String) p[0];
+			double unemployment = (double) p[1];
+			CountryNameAndUnemployment countryNameAndUnemployment = new CountryNameAndUnemployment();
+			countryNameAndUnemployment.setCountryName(countryName);
+			countryNameAndUnemployment.setUnemployment(unemployment);
+			countryNameAndUnemploymentList.add(countryNameAndUnemployment);
+			
+		}
+		
+		unemploymentByCountryNameAll.setCountryNameAndUnemployment(countryNameAndUnemploymentList);
+		return unemploymentByCountryNameAll;
+		
 	}
 
 }

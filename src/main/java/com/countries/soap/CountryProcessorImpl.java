@@ -10,9 +10,11 @@ import com.countries.model.request.CountriesRequest;
 import com.countries.model.request.CountryCodeRequest;
 import com.countries.model.request.CountryNameAndYearRequest;
 import com.countries.model.request.CountryNameRequest;
+import com.countries.model.request.YearRequest;
 import com.countries.model.response.CountriesResponse;
 import com.countries.model.response.CountryDetailsResponse;
 import com.countries.model.response.CountryResponse;
+import com.countries.model.response.UnemploymentByCountryNameAll;
 import com.countries.model.response.UnemploymentByCountryNameAndYearResponse;
 import com.countries.model.response.UnemploymentByCountryNameResponse;
 import com.countries.repository.CountryRepository;
@@ -85,14 +87,25 @@ public class CountryProcessorImpl implements CountryProcessor {
 	public UnemploymentByCountryNameAndYearResponse getUnemploymentByCOuntryNameAndYear(
 			CountryNameAndYearRequest countryNameAndYearRequest) {
 		UnemploymentByCountryNameAndYearResponse unemploymentByCountryNameAndYearResponse = new UnemploymentByCountryNameAndYearResponse();
-		String countryName = countryNameAndYearRequest.getCountryName();
-		int year = countryNameAndYearRequest.getYear();
+		String countryName = countryNameAndYearRequest.getCountryNameAndYear().getCountryName();
+		int year = countryNameAndYearRequest.getCountryNameAndYear().getYear();
 		CountryRepository countryRepository = new CountryRepositoryImpl();
 		CountryEntity countryEntity = countryRepository.findByCountryName(countryName);
 		CountryToXmlMapper countryToXmlMapper = new CountryToXmlMapper();
 		unemploymentByCountryNameAndYearResponse = countryToXmlMapper
 				.countryNameAndYearToCountryNameAndyearResponse(year, countryEntity);
 		return unemploymentByCountryNameAndYearResponse;
+	}
+
+	@Override
+	public UnemploymentByCountryNameAll getUnemploymentByCOuntryNameAll(YearRequest yearRequest) {
+		UnemploymentByCountryNameAll unemploymentByCountryNameAll = new UnemploymentByCountryNameAll();
+		int year = yearRequest.getYear();
+		CountryRepository countryRepository = new CountryRepositoryImpl();
+		List<Object[]> object = countryRepository.findUnemploymentByYear(year);
+		CountryToXmlMapper countryToXmlMapper = new CountryToXmlMapper();
+		unemploymentByCountryNameAll = countryToXmlMapper.conventObjectToCountryNameAndYerListResponse(object);
+		return unemploymentByCountryNameAll;
 	}
 
 }
