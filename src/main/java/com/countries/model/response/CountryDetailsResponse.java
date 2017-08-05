@@ -11,7 +11,7 @@ import com.countries.model.CountryDetails;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CountryDetailsResponse {
 
-	@XmlElement(name="country_details")
+	@XmlElement(name = "country_details")
 	private CountryDetails countryDetails;
 
 	public CountryDetailsResponse() {
@@ -25,5 +25,5 @@ public class CountryDetailsResponse {
 	public void setCountryDetails(CountryDetails countryDetails) {
 		this.countryDetails = countryDetails;
 	}
-	
+
 }

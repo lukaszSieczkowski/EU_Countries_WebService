@@ -12,9 +12,13 @@ public interface CountryRepository {
 	public CountryEntity findByCountryCode(String countryCode);
 
 	public CountryEntity findByCountryName(String countryCode);
-	
+
 	public List<CountryEntity> findCountries();
-	
+
 	public List<Object[]> findUnemploymentByYear(int year);
-	
+
+	public Double findGdpByCountryNameAndYear(String countryName, int year);
+
+	public List<Object[]> findGdpByYear(int year);
+
 }

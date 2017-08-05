@@ -7,17 +7,21 @@ import org.springframework.stereotype.Service;
 
 import com.countries.entity.CountryDetailsEntity;
 import com.countries.entity.CountryEntity;
+import com.countries.entity.GrosDomesticProductYearToYearEntity;
 import com.countries.entity.UnemploymentEntity;
 import com.countries.model.Country;
 import com.countries.model.CountryDetails;
+import com.countries.model.CountryNameAndGdp;
 import com.countries.model.CountryNameAndUnemployment;
-import com.countries.model.CountryNameAndYear;
+import com.countries.model.GrosDomesticProduct;
 import com.countries.model.Unemployment;
-import com.countries.model.response.UnemploymentByCountryNameAll;
+import com.countries.model.response.GdpByCountryNameAndYearResponse;
+import com.countries.model.response.GdpByYearResponse;
+import com.countries.model.response.UnemploymentByYearResponse;
 import com.countries.model.response.UnemploymentByCountryNameAndYearResponse;
 
 @Service
-public class CountryToXmlMapper {
+public class EntityToXmlMapper {
 
 	public Country countryEntityToCountry(CountryEntity countryEntity) {
 		Country country = new Country();
@@ -119,25 +123,66 @@ public class CountryToXmlMapper {
 		}
 		return unemploymentByCountryNameAndYearResponse;
 	}
-	
-	public UnemploymentByCountryNameAll conventObjectToCountryNameAndYerListResponse(List<Object[]>object){
-		
-		UnemploymentByCountryNameAll unemploymentByCountryNameAll = new UnemploymentByCountryNameAll();
+
+	public UnemploymentByYearResponse conventObjectToUnemploymentCountryNameAndYerListResponse(List<Object[]> object) {
+
+		UnemploymentByYearResponse unemploymentByCountryNameAll = new UnemploymentByYearResponse();
 		List<CountryNameAndUnemployment> countryNameAndUnemploymentList = new ArrayList<>();
-		for(Object[] p:object){
-			
+		for (Object[] p : object) {
+
 			String countryName = (String) p[0];
 			double unemployment = (double) p[1];
 			CountryNameAndUnemployment countryNameAndUnemployment = new CountryNameAndUnemployment();
 			countryNameAndUnemployment.setCountryName(countryName);
 			countryNameAndUnemployment.setUnemployment(unemployment);
 			countryNameAndUnemploymentList.add(countryNameAndUnemployment);
-			
+
 		}
-		
 		unemploymentByCountryNameAll.setCountryNameAndUnemployment(countryNameAndUnemploymentList);
 		return unemploymentByCountryNameAll;
-		
+
+	}
+
+	public GrosDomesticProduct grosDomesticProductEntityToGrossDomesticProduct(CountryEntity countryEntity) {
+		GrosDomesticProductYearToYearEntity grosDomesticProductYearToYearEntity = countryEntity
+				.getGrosDomesticProductYearToYear();
+		GrosDomesticProduct grosDomesticProduct = new GrosDomesticProduct.Builder()
+				.gdp_2003(grosDomesticProductYearToYearEntity.getGdp_2003())
+				.gdp_2004(grosDomesticProductYearToYearEntity.getGdp_2004())
+				.gdp_2005(grosDomesticProductYearToYearEntity.getGdp_2005())
+				.gdp_2006(grosDomesticProductYearToYearEntity.getGdp_2006())
+				.gdp_2007(grosDomesticProductYearToYearEntity.getGdp_2007())
+				.gdp_2008(grosDomesticProductYearToYearEntity.getGdp_2008())
+				.gdp_2009(grosDomesticProductYearToYearEntity.getGdp_2009())
+				.gdp_2010(grosDomesticProductYearToYearEntity.getGdp_2010())
+				.gdp_2011(grosDomesticProductYearToYearEntity.getGdp_2011())
+				.gdp_2012(grosDomesticProductYearToYearEntity.getGdp_2012())
+				.gdp_2013(grosDomesticProductYearToYearEntity.getGdp_2013())
+				.gdp_2014(grosDomesticProductYearToYearEntity.getGdp_2014()).build();
+		return grosDomesticProduct;
+	}
+
+	public GdpByCountryNameAndYearResponse gdpByCountryNameAndYearToCountryNameAndyearResponse(Double gdp) {
+		GdpByCountryNameAndYearResponse gdpByCountryNameAndYearResponse = new GdpByCountryNameAndYearResponse();
+		gdpByCountryNameAndYearResponse.setGdp(gdp);
+		return gdpByCountryNameAndYearResponse;
+	}
+
+	public GdpByYearResponse conventObjectToGdpCountryNameAndYerListResponse(List<Object[]> object) {
+
+		GdpByYearResponse gdpByYearResponse = new GdpByYearResponse();
+		List<CountryNameAndGdp> countryNameAndGdpList = new ArrayList<>();
+		for (Object[] p : object) {
+
+			String countryName = (String) p[0];
+			double gdp = (double) p[1];
+			CountryNameAndGdp countryNameAndGdp = new CountryNameAndGdp();
+			countryNameAndGdp.setCountryName(countryName);
+			countryNameAndGdp.setGdp(gdp);
+			countryNameAndGdpList.add(countryNameAndGdp);
+		}
+		gdpByYearResponse.setCountryNameAndGdp(countryNameAndGdpList);
+		return gdpByYearResponse;
 	}
 
 }

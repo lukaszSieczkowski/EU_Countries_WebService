@@ -7,14 +7,14 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CountryNameAndUnemployment {
+public class CountryNameAndGdp {
 
 	@XmlElement(name = "country_name")
 	private String countryName;
-	@XmlElement(name = "unemployment")
-	private double unemployment;
+	@XmlElement(name = "gdp")
+	private double gdp;
 
-	public CountryNameAndUnemployment() {
+	public CountryNameAndGdp() {
 		super();
 	}
 
@@ -26,11 +26,12 @@ public class CountryNameAndUnemployment {
 		this.countryName = countryName;
 	}
 
-	public double getUnemployment() {
-		return unemployment;
+	public double getGdp() {
+		return gdp;
 	}
 
-	public void setUnemployment(double unemployment) {
-		this.unemployment = unemployment;
+	public void setGdp(double gdp) {
+		this.gdp = gdp;
 	}
+
 }

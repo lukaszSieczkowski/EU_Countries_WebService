@@ -124,10 +124,10 @@ public class CountryDetails {
 			this.grosDomesticProductPerPerson = grosDomesticProductPerPerson;
 			return this;
 		}
-		
-		public CountryDetails build(){
+
+		public CountryDetails build() {
 			return new CountryDetails(this);
 		}
-		
+
 	}
 }

@@ -8,11 +8,12 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CountryNameAndYear {
-	@XmlElement(name="country_name")
-	private String countryName;
-	@XmlElement(name="year")
-	private int year;
 	
+	@XmlElement(name = "country_name")
+	private String countryName;
+	@XmlElement(name = "year")
+	private int year;
+
 	public CountryNameAndYear() {
 		super();
 	}
@@ -32,7 +33,5 @@ public class CountryNameAndYear {
 	public void setYear(int year) {
 		this.year = year;
 	}
-	
-	
 
 }

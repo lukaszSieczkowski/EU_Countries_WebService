@@ -17,7 +17,7 @@ import com.countries.entity.CountryEntity;
 public class CountryRepositoryImpl implements CountryRepository {
 
 	public CountryEntity findByCountryCode(String countryCode) {
-	
+
 		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("myPersistanceUnit");
 		EntityManager entityManager = emFactory.createEntityManager();
 		Query query = entityManager
@@ -26,9 +26,9 @@ public class CountryRepositoryImpl implements CountryRepository {
 		entityManager.close();
 		return countryEntity;
 	}
-	
+
 	public CountryEntity findByCountryName(String countryName) {
-	
+
 		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("myPersistanceUnit");
 		EntityManager entityManager = emFactory.createEntityManager();
 		Query query = entityManager
@@ -46,19 +46,36 @@ public class CountryRepositoryImpl implements CountryRepository {
 		entityManager.close();
 		return countries;
 	}
-	
-	public List<Object[]> findUnemploymentByYear(int year){
+
+	public List<Object[]> findUnemploymentByYear(int year) {
 		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("myPersistanceUnit");
 		EntityManager entityManager = emFactory.createEntityManager();
-		List<Object[]> object = entityManager.createQuery("SELECT distinct c.countryName,u.unemployment_"+year+" FROM CountryEntity c JOIN UnemploymentEntity u ON c.id = u.country ").getResultList();
-		for(Object[] p:object){
-			String countryName = (String) p[0];
-			double unemployment = (double) p[1];
-		}
+		List<Object[]> object = entityManager.createQuery("SELECT distinct c.countryName,u.unemployment_" + year
+				+ " FROM CountryEntity c JOIN UnemploymentEntity u ON c.id = u.country ").getResultList();
 		entityManager.close();
 		return object;
 	}
-	
-	
-	
+
+	public Double findGdpByCountryNameAndYear(String countryName, int year) {
+		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("myPersistanceUnit");
+		EntityManager entityManager = emFactory.createEntityManager();
+		Double gdp = (Double) entityManager.createQuery("SELECT g.gdp_" + year
+				+ " FROM CountryEntity c JOIN GrosDomesticProductYearToYearEntity g ON c.id = g.country WHERE c.countryName = '"
+				+ countryName + "'").getSingleResult();
+		entityManager.close();
+		return gdp;
+	}
+
+	@Override
+	public List<Object[]> findGdpByYear(int year) {
+		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("myPersistanceUnit");
+		EntityManager entityManager = emFactory.createEntityManager();
+		List<Object[]> object = entityManager
+				.createQuery("SELECT distinct c.countryName,g.gdp_" + year
+						+ " FROM CountryEntity c JOIN GrosDomesticProductYearToYearEntity g ON c.id = g.country ")
+				.getResultList();
+		entityManager.close();
+		return object;
+	}
+
 }

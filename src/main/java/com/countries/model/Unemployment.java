@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Unemployment {
+
 	@XmlElement(name = "unemployment_2003")
 	private double unemployment_2003;
 	@XmlElement(name = "unemployment_2004")

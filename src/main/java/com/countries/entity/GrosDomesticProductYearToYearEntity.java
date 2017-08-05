@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "gros_domestic_product_year_to_year_percentage")
-public class GrosDomesticProductYearToYear {
+public class GrosDomesticProductYearToYearEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,8 +44,8 @@ public class GrosDomesticProductYearToYear {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_country")
 	private CountryEntity country;
-	
-	public GrosDomesticProductYearToYear() {
+
+	public GrosDomesticProductYearToYearEntity() {
 		super();
 	}
 

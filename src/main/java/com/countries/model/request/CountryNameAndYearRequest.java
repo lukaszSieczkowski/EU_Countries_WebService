@@ -10,8 +10,8 @@ import com.countries.model.CountryNameAndYear;
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CountryNameAndYearRequest {
-	
-	@XmlElement(name="countryNameAndYear")
+
+	@XmlElement(name = "countryNameAndYear")
 	private CountryNameAndYear countryNameAndYear;
 
 	public CountryNameAndYearRequest() {
@@ -25,6 +25,5 @@ public class CountryNameAndYearRequest {
 	public void setCountryNameAndYear(CountryNameAndYear countryNameAndYear) {
 		this.countryNameAndYear = countryNameAndYear;
 	}
-	
-	
+
 }

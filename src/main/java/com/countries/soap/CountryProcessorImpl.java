@@ -5,6 +5,7 @@ import java.util.List;
 import com.countries.entity.CountryEntity;
 import com.countries.model.Country;
 import com.countries.model.CountryDetails;
+import com.countries.model.GrosDomesticProduct;
 import com.countries.model.Unemployment;
 import com.countries.model.request.CountriesRequest;
 import com.countries.model.request.CountryCodeRequest;
@@ -14,12 +15,15 @@ import com.countries.model.request.YearRequest;
 import com.countries.model.response.CountriesResponse;
 import com.countries.model.response.CountryDetailsResponse;
 import com.countries.model.response.CountryResponse;
-import com.countries.model.response.UnemploymentByCountryNameAll;
+import com.countries.model.response.GdpByCountryNameAndYearResponse;
+import com.countries.model.response.GdpByCountryNameResponse;
+import com.countries.model.response.GdpByYearResponse;
+import com.countries.model.response.UnemploymentByYearResponse;
 import com.countries.model.response.UnemploymentByCountryNameAndYearResponse;
 import com.countries.model.response.UnemploymentByCountryNameResponse;
 import com.countries.repository.CountryRepository;
 import com.countries.repository.CountryRepositoryImpl;
-import com.countries.service.CountryToXmlMapper;
+import com.countries.service.EntityToXmlMapper;
 
 public class CountryProcessorImpl implements CountryProcessor {
 
@@ -28,9 +32,9 @@ public class CountryProcessorImpl implements CountryProcessor {
 		CountryResponse countryResponse = new CountryResponse();
 		String countryCode = countryCodeRequest.getCountryCode();
 		CountryRepository countryRepository = new CountryRepositoryImpl();
-		CountryToXmlMapper countryToXmlMapper = new CountryToXmlMapper();
+		EntityToXmlMapper entityToXmlMapper = new EntityToXmlMapper();
 		CountryEntity countryEntity = countryRepository.findByCountryCode(countryCode);
-		Country country = countryToXmlMapper.countryEntityToCountry(countryEntity);
+		Country country = entityToXmlMapper.countryEntityToCountry(countryEntity);
 		countryResponse.setCountry(country);
 		return countryResponse;
 	}
@@ -40,8 +44,8 @@ public class CountryProcessorImpl implements CountryProcessor {
 		CountriesResponse countriesResponse = new CountriesResponse();
 		CountryRepository countryRepository = new CountryRepositoryImpl();
 		List<CountryEntity> countryEntityList = countryRepository.findCountries();
-		CountryToXmlMapper countryToXmlMapper = new CountryToXmlMapper();
-		List<Country> countries = countryToXmlMapper.countryEntityToCountry(countryEntityList);
+		EntityToXmlMapper entityToXmlMapper = new EntityToXmlMapper();
+		List<Country> countries = entityToXmlMapper.countryEntityToCountry(countryEntityList);
 		countriesResponse.setCountries(countries);
 		return countriesResponse;
 	}
@@ -51,9 +55,9 @@ public class CountryProcessorImpl implements CountryProcessor {
 		CountryDetailsResponse countryDetailsResponse = new CountryDetailsResponse();
 		String countryCode = countryCodeRequest.getCountryCode();
 		CountryRepository countryRepository = new CountryRepositoryImpl();
-		CountryToXmlMapper countryToXmlMapper = new CountryToXmlMapper();
+		EntityToXmlMapper entityToXmlMapper = new EntityToXmlMapper();
 		CountryEntity countryEntity = countryRepository.findByCountryCode(countryCode);
-		CountryDetails countryDetails = countryToXmlMapper.countryDetailsEntityToCountryDetails(countryEntity);
+		CountryDetails countryDetails = entityToXmlMapper.countryDetailsEntityToCountryDetails(countryEntity);
 		countryDetailsResponse.setCountryDetails(countryDetails);
 		return countryDetailsResponse;
 	}
@@ -63,9 +67,9 @@ public class CountryProcessorImpl implements CountryProcessor {
 		CountryDetailsResponse countryDetailsResponse = new CountryDetailsResponse();
 		String countryName = countryNameRequest.getCountryName();
 		CountryRepository countryRepository = new CountryRepositoryImpl();
-		CountryToXmlMapper countryToXmlMapper = new CountryToXmlMapper();
+		EntityToXmlMapper entityToXmlMapper = new EntityToXmlMapper();
 		CountryEntity countryEntity = countryRepository.findByCountryName(countryName);
-		CountryDetails countryDetails = countryToXmlMapper.countryDetailsEntityToCountryDetails(countryEntity);
+		CountryDetails countryDetails = entityToXmlMapper.countryDetailsEntityToCountryDetails(countryEntity);
 		countryDetailsResponse.setCountryDetails(countryDetails);
 		return countryDetailsResponse;
 	}
@@ -76,36 +80,76 @@ public class CountryProcessorImpl implements CountryProcessor {
 		String countryName = countryNameRequest.getCountryName();
 		CountryRepository countryRepository = new CountryRepositoryImpl();
 		CountryEntity countryEntity = countryRepository.findByCountryName(countryName);
-		CountryToXmlMapper countryToXmlMapper = new CountryToXmlMapper();
-		Unemployment unemployment = countryToXmlMapper.unemploymentDetailsToUnemployment(countryEntity);
+		EntityToXmlMapper entityToXmlMapper = new EntityToXmlMapper();
+		Unemployment unemployment = entityToXmlMapper.unemploymentDetailsToUnemployment(countryEntity);
 
 		unemploymentByCountryNameResponse.setUnemployment(unemployment);
 		return unemploymentByCountryNameResponse;
 	}
 
 	@Override
-	public UnemploymentByCountryNameAndYearResponse getUnemploymentByCOuntryNameAndYear(
+	public UnemploymentByCountryNameAndYearResponse getUnemploymentByCountryNameAndYear(
 			CountryNameAndYearRequest countryNameAndYearRequest) {
 		UnemploymentByCountryNameAndYearResponse unemploymentByCountryNameAndYearResponse = new UnemploymentByCountryNameAndYearResponse();
 		String countryName = countryNameAndYearRequest.getCountryNameAndYear().getCountryName();
 		int year = countryNameAndYearRequest.getCountryNameAndYear().getYear();
 		CountryRepository countryRepository = new CountryRepositoryImpl();
 		CountryEntity countryEntity = countryRepository.findByCountryName(countryName);
-		CountryToXmlMapper countryToXmlMapper = new CountryToXmlMapper();
-		unemploymentByCountryNameAndYearResponse = countryToXmlMapper
+		EntityToXmlMapper entityToXmlMapper = new EntityToXmlMapper();
+		unemploymentByCountryNameAndYearResponse = entityToXmlMapper
 				.countryNameAndYearToCountryNameAndyearResponse(year, countryEntity);
 		return unemploymentByCountryNameAndYearResponse;
 	}
 
 	@Override
-	public UnemploymentByCountryNameAll getUnemploymentByCOuntryNameAll(YearRequest yearRequest) {
-		UnemploymentByCountryNameAll unemploymentByCountryNameAll = new UnemploymentByCountryNameAll();
+	public UnemploymentByYearResponse getUnemploymentByYear(YearRequest yearRequest) {
+		UnemploymentByYearResponse unemploymentByYearResponse = new UnemploymentByYearResponse();
 		int year = yearRequest.getYear();
 		CountryRepository countryRepository = new CountryRepositoryImpl();
 		List<Object[]> object = countryRepository.findUnemploymentByYear(year);
-		CountryToXmlMapper countryToXmlMapper = new CountryToXmlMapper();
-		unemploymentByCountryNameAll = countryToXmlMapper.conventObjectToCountryNameAndYerListResponse(object);
-		return unemploymentByCountryNameAll;
+		EntityToXmlMapper entityToXmlMapper = new EntityToXmlMapper();
+		unemploymentByYearResponse = entityToXmlMapper.conventObjectToUnemploymentCountryNameAndYerListResponse(object);
+		return unemploymentByYearResponse;
+	}
+
+	@Override
+	public GdpByCountryNameResponse getGprByCountry(CountryNameRequest countryNameRequest) {
+		GdpByCountryNameResponse gprByCountryNameResponse = new GdpByCountryNameResponse();
+		String countryName = countryNameRequest.getCountryName();
+		CountryRepository countryRepository = new CountryRepositoryImpl();
+		CountryEntity countryEntity = countryRepository.findByCountryName(countryName);
+		EntityToXmlMapper entityToXmlMapper = new EntityToXmlMapper();
+		GrosDomesticProduct grosDomesticProduct = entityToXmlMapper
+				.grosDomesticProductEntityToGrossDomesticProduct(countryEntity);
+		gprByCountryNameResponse.setGrosDomesticProduct(grosDomesticProduct);
+		return gprByCountryNameResponse;
+
+	}
+
+	@Override
+	public GdpByCountryNameAndYearResponse getGprByCountryNameAndYear(
+			CountryNameAndYearRequest countryNameAndYearRequest) {
+		GdpByCountryNameAndYearResponse gprByCountryNameAndYearResponse = new GdpByCountryNameAndYearResponse();
+		String countryName = countryNameAndYearRequest.getCountryNameAndYear().getCountryName();
+		int year = countryNameAndYearRequest.getCountryNameAndYear().getYear();
+		CountryRepository countryRepository = new CountryRepositoryImpl();
+		Double gdp = countryRepository.findGdpByCountryNameAndYear(countryName, year);
+		EntityToXmlMapper entityToXmlMapper = new EntityToXmlMapper();
+		gprByCountryNameAndYearResponse = entityToXmlMapper.gdpByCountryNameAndYearToCountryNameAndyearResponse(gdp);
+		return gprByCountryNameAndYearResponse;
+	}
+
+	@Override
+	public GdpByYearResponse getGdpByYear(YearRequest yearRequest) {
+		GdpByYearResponse gdpByYearResponse = new GdpByYearResponse();
+		int year = yearRequest.getYear();
+		CountryRepository countryRepository = new CountryRepositoryImpl();
+		List<Object[]> object = countryRepository.findGdpByYear(year);
+
+		EntityToXmlMapper entityToXmlMapper = new EntityToXmlMapper();
+		gdpByYearResponse = entityToXmlMapper.conventObjectToGdpCountryNameAndYerListResponse(object);
+
+		return gdpByYearResponse;
 	}
 
 }

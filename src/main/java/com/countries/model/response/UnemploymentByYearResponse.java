@@ -8,14 +8,15 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 import com.countries.model.CountryNameAndUnemployment;
-import com.countries.model.CountryNameAndYear;
+
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
-public class UnemploymentByCountryNameAll {
-	@XmlElement(name="countryNameAndYear")
+public class UnemploymentByYearResponse {
+
+	@XmlElement(name = "countryNameAndYear")
 	private List<CountryNameAndUnemployment> countryNameAndUnemployment;
 
-	public UnemploymentByCountryNameAll() {
+	public UnemploymentByYearResponse() {
 		super();
 	}
 

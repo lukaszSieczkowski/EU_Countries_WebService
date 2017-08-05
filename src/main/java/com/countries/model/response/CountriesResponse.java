@@ -12,6 +12,7 @@ import com.countries.model.Country;
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CountriesResponse {
+	
 	@XmlElement(name = "countries")
 	private List<Country> countries;
 

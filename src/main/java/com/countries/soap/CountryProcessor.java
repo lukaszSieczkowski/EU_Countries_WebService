@@ -11,7 +11,10 @@ import com.countries.model.request.YearRequest;
 import com.countries.model.response.CountriesResponse;
 import com.countries.model.response.CountryDetailsResponse;
 import com.countries.model.response.CountryResponse;
-import com.countries.model.response.UnemploymentByCountryNameAll;
+import com.countries.model.response.GdpByCountryNameAndYearResponse;
+import com.countries.model.response.GdpByCountryNameResponse;
+import com.countries.model.response.GdpByYearResponse;
+import com.countries.model.response.UnemploymentByYearResponse;
 import com.countries.model.response.UnemploymentByCountryNameAndYearResponse;
 import com.countries.model.response.UnemploymentByCountryNameResponse;
 
@@ -25,18 +28,28 @@ public interface CountryProcessor {
 
 	@WebMethod
 	public CountryDetailsResponse getCountryDetailsByCountryCode(CountryCodeRequest countryCodeRequest);
-	
+
 	@WebMethod
 	public CountryDetailsResponse getCountryDetailsByCountryName(CountryNameRequest countryNameRequest);
 
 	@WebMethod
 	public UnemploymentByCountryNameResponse getUnemploymentByCountry(CountryNameRequest countryNameRequest);
-	
-	@WebMethod
-	public UnemploymentByCountryNameAndYearResponse getUnemploymentByCOuntryNameAndYear(CountryNameAndYearRequest countryNameAndYearRequest);
-	
-	@WebMethod
-	public UnemploymentByCountryNameAll getUnemploymentByCOuntryNameAll(YearRequest yearRequest);
 
-	
+	@WebMethod
+	public UnemploymentByCountryNameAndYearResponse getUnemploymentByCountryNameAndYear(
+			CountryNameAndYearRequest countryNameAndYearRequest);
+
+	@WebMethod
+	public UnemploymentByYearResponse getUnemploymentByYear(YearRequest yearRequest);
+
+	@WebMethod
+	public GdpByCountryNameResponse getGprByCountry(CountryNameRequest countryNameRequest);
+
+	@WebMethod
+	public GdpByCountryNameAndYearResponse getGprByCountryNameAndYear(
+			CountryNameAndYearRequest countryNameAndYearRequest);
+
+	@WebMethod
+	public GdpByYearResponse getGdpByYear(YearRequest yearRequest);
+
 }

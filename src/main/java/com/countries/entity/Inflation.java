@@ -44,7 +44,7 @@ public class Inflation {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_country")
 	private CountryEntity country;
-	
+
 	public Inflation() {
 		super();
 	}

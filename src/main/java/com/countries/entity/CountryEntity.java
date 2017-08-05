@@ -23,7 +23,7 @@ public class CountryEntity {
 	@OneToOne(mappedBy = "country")
 	private CountryDetailsEntity details;
 	@OneToOne(mappedBy = "country")
-	private GrosDomesticProductYearToYear grosDomesticProductYearToYear;
+	private GrosDomesticProductYearToYearEntity grosDomesticProductYearToYear;
 	@OneToOne(mappedBy = "country")
 	private Population population;
 	@OneToOne(mappedBy = "country")
@@ -71,11 +71,11 @@ public class CountryEntity {
 		this.details = details;
 	}
 
-	public GrosDomesticProductYearToYear getGrosDomesticProductYearToYear() {
+	public GrosDomesticProductYearToYearEntity getGrosDomesticProductYearToYear() {
 		return grosDomesticProductYearToYear;
 	}
 
-	public void setGrosDomesticProductYearToYear(GrosDomesticProductYearToYear grosDomesticProductYearToYear) {
+	public void setGrosDomesticProductYearToYear(GrosDomesticProductYearToYearEntity grosDomesticProductYearToYear) {
 		this.grosDomesticProductYearToYear = grosDomesticProductYearToYear;
 	}
 

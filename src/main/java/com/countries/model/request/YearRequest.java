@@ -22,5 +22,5 @@ public class YearRequest {
 	public YearRequest() {
 		super();
 	}
-	
+
 }
