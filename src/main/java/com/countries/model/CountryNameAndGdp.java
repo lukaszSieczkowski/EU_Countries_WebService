@@ -34,4 +34,10 @@ public class CountryNameAndGdp {
 		this.gdp = gdp;
 	}
 
+	@Override
+	public String toString() {
+		return "CountryNameAndGdp [countryName=" + countryName + ", gdp=" + gdp + "]";
+	}
+
+	
 }

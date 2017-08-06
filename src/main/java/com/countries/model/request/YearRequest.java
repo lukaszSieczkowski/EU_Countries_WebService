@@ -11,6 +11,16 @@ public class YearRequest {
 	@XmlElement(name = "year", required = true)
 	private int year;
 
+	public YearRequest() {
+		super();
+	}
+	
+
+	public YearRequest(int year) {
+		super();
+		this.year = year;
+	}
+
 	public int getYear() {
 		return year;
 	}
@@ -19,8 +29,5 @@ public class YearRequest {
 		this.year = year;
 	}
 
-	public YearRequest() {
-		super();
-	}
 
 }

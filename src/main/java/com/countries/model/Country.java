@@ -19,6 +19,14 @@ public class Country {
 		super();
 	}
 
+	public Country(String countryName, String countryCode) {
+		super();
+		this.countryName = countryName;
+		this.countryCode = countryCode;
+	}
+
+
+
 	public String getCountryName() {
 		return countryName;
 	}
@@ -35,4 +43,41 @@ public class Country {
 		this.countryCode = countryCode;
 	}
 
+	@Override
+	public String toString() {
+		return "Country [countryName=" + countryName + ", countryCode=" + countryCode + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((countryCode == null) ? 0 : countryCode.hashCode());
+		result = prime * result + ((countryName == null) ? 0 : countryName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Country other = (Country) obj;
+		if (countryCode == null) {
+			if (other.countryCode != null)
+				return false;
+		} else if (!countryCode.equals(other.countryCode))
+			return false;
+		if (countryName == null) {
+			if (other.countryName != null)
+				return false;
+		} else if (!countryName.equals(other.countryName))
+			return false;
+		return true;
+	}
+
+	
 }

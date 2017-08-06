@@ -15,6 +15,14 @@ public class CountryNameRequest {
 	public CountryNameRequest() {
 		super();
 	}
+	
+
+	public CountryNameRequest(String countryName) {
+		super();
+		this.countryName = countryName;
+	}
+
+
 
 	public String getCountryName() {
 		return countryName;

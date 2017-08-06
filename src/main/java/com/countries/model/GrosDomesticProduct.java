@@ -231,4 +231,74 @@ public class GrosDomesticProduct {
 	public void setGdp_2014(double gdp_2014) {
 		this.gdp_2014 = gdp_2014;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(gdp_2003);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(gdp_2004);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(gdp_2005);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(gdp_2006);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(gdp_2007);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(gdp_2008);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(gdp_2009);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(gdp_2010);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(gdp_2011);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(gdp_2012);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(gdp_2013);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(gdp_2014);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		GrosDomesticProduct other = (GrosDomesticProduct) obj;
+		if (Double.doubleToLongBits(gdp_2003) != Double.doubleToLongBits(other.gdp_2003))
+			return false;
+		if (Double.doubleToLongBits(gdp_2004) != Double.doubleToLongBits(other.gdp_2004))
+			return false;
+		if (Double.doubleToLongBits(gdp_2005) != Double.doubleToLongBits(other.gdp_2005))
+			return false;
+		if (Double.doubleToLongBits(gdp_2006) != Double.doubleToLongBits(other.gdp_2006))
+			return false;
+		if (Double.doubleToLongBits(gdp_2007) != Double.doubleToLongBits(other.gdp_2007))
+			return false;
+		if (Double.doubleToLongBits(gdp_2008) != Double.doubleToLongBits(other.gdp_2008))
+			return false;
+		if (Double.doubleToLongBits(gdp_2009) != Double.doubleToLongBits(other.gdp_2009))
+			return false;
+		if (Double.doubleToLongBits(gdp_2010) != Double.doubleToLongBits(other.gdp_2010))
+			return false;
+		if (Double.doubleToLongBits(gdp_2011) != Double.doubleToLongBits(other.gdp_2011))
+			return false;
+		if (Double.doubleToLongBits(gdp_2012) != Double.doubleToLongBits(other.gdp_2012))
+			return false;
+		if (Double.doubleToLongBits(gdp_2013) != Double.doubleToLongBits(other.gdp_2013))
+			return false;
+		if (Double.doubleToLongBits(gdp_2014) != Double.doubleToLongBits(other.gdp_2014))
+			return false;
+		return true;
+	}
+	
+	
 }

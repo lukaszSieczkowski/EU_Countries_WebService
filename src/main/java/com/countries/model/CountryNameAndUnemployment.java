@@ -17,6 +17,14 @@ public class CountryNameAndUnemployment {
 	public CountryNameAndUnemployment() {
 		super();
 	}
+	
+	public CountryNameAndUnemployment(String countryName, double unemployment) {
+		super();
+		this.countryName = countryName;
+		this.unemployment = unemployment;
+	}
+
+
 
 	public String getCountryName() {
 		return countryName;

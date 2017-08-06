@@ -30,6 +30,19 @@ public class Unemployment {
 	@XmlElement(name = "unemployment_2012")
 	private double unemployment_2012;
 
+	private Unemployment(Builder builer) {
+		this.unemployment_2003 = builer.unemployment_2003;
+		this.unemployment_2004 = builer.unemployment_2004;
+		this.unemployment_2005 = builer.unemployment_2005;
+		this.unemployment_2006 = builer.unemployment_2006;
+		this.unemployment_2007 = builer.unemployment_2007;
+		this.unemployment_2008 = builer.unemployment_2008;
+		this.unemployment_2009 = builer.unemployment_2009;
+		this.unemployment_2010 = builer.unemployment_2010;
+		this.unemployment_2011 = builer.unemployment_2011;
+		this.unemployment_2012 = builer.unemployment_2012;
+	}
+
 	public double getUnemployment_2003() {
 		return unemployment_2003;
 	}
@@ -110,19 +123,6 @@ public class Unemployment {
 		this.unemployment_2012 = unemployment_2012;
 	}
 
-	private Unemployment(Builder builer) {
-		this.unemployment_2003 = builer.unemployment_2003;
-		this.unemployment_2004 = builer.unemployment_2004;
-		this.unemployment_2005 = builer.unemployment_2005;
-		this.unemployment_2006 = builer.unemployment_2006;
-		this.unemployment_2007 = builer.unemployment_2007;
-		this.unemployment_2008 = builer.unemployment_2008;
-		this.unemployment_2009 = builer.unemployment_2009;
-		this.unemployment_2010 = builer.unemployment_2010;
-		this.unemployment_2011 = builer.unemployment_2011;
-		this.unemployment_2012 = builer.unemployment_2012;
-	}
-
 	public static class Builder {
 
 		private double unemployment_2003;
@@ -194,6 +194,66 @@ public class Unemployment {
 			return new Unemployment(this);
 		}
 
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(unemployment_2003);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(unemployment_2004);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(unemployment_2005);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(unemployment_2006);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(unemployment_2007);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(unemployment_2008);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(unemployment_2009);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(unemployment_2010);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(unemployment_2011);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(unemployment_2012);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Unemployment other = (Unemployment) obj;
+		if (Double.doubleToLongBits(unemployment_2003) != Double.doubleToLongBits(other.unemployment_2003))
+			return false;
+		if (Double.doubleToLongBits(unemployment_2004) != Double.doubleToLongBits(other.unemployment_2004))
+			return false;
+		if (Double.doubleToLongBits(unemployment_2005) != Double.doubleToLongBits(other.unemployment_2005))
+			return false;
+		if (Double.doubleToLongBits(unemployment_2006) != Double.doubleToLongBits(other.unemployment_2006))
+			return false;
+		if (Double.doubleToLongBits(unemployment_2007) != Double.doubleToLongBits(other.unemployment_2007))
+			return false;
+		if (Double.doubleToLongBits(unemployment_2008) != Double.doubleToLongBits(other.unemployment_2008))
+			return false;
+		if (Double.doubleToLongBits(unemployment_2009) != Double.doubleToLongBits(other.unemployment_2009))
+			return false;
+		if (Double.doubleToLongBits(unemployment_2010) != Double.doubleToLongBits(other.unemployment_2010))
+			return false;
+		if (Double.doubleToLongBits(unemployment_2011) != Double.doubleToLongBits(other.unemployment_2011))
+			return false;
+		if (Double.doubleToLongBits(unemployment_2012) != Double.doubleToLongBits(other.unemployment_2012))
+			return false;
+		return true;
 	}
 
 }

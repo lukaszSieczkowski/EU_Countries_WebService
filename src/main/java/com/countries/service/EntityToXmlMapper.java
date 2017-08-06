@@ -108,7 +108,6 @@ public class EntityToXmlMapper {
 		case 2010: {
 			unemploymentByCountryNameAndYearResponse
 					.setUnemployment(countryEntity.getUnemployment().getUnemployment_2010());
-			System.out.println(countryEntity.getUnemployment().getUnemployment_2010());
 			break;
 		}
 		case 2011: {
@@ -179,6 +178,8 @@ public class EntityToXmlMapper {
 			CountryNameAndGdp countryNameAndGdp = new CountryNameAndGdp();
 			countryNameAndGdp.setCountryName(countryName);
 			countryNameAndGdp.setGdp(gdp);
+			System.out.println(countryName);
+			System.out.println(gdp);
 			countryNameAndGdpList.add(countryNameAndGdp);
 		}
 		gdpByYearResponse.setCountryNameAndGdp(countryNameAndGdpList);

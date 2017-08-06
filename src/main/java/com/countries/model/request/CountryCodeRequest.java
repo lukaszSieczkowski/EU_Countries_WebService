@@ -15,6 +15,13 @@ public class CountryCodeRequest {
 	public CountryCodeRequest() {
 		super();
 	}
+	
+	public CountryCodeRequest(String countryCode) {
+		super();
+		this.countryCode = countryCode;
+	}
+
+
 
 	public String getCountryCode() {
 		return countryCode;

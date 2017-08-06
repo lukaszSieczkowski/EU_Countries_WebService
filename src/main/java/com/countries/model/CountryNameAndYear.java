@@ -18,6 +18,14 @@ public class CountryNameAndYear {
 		super();
 	}
 
+	public CountryNameAndYear(String countryName, int year) {
+		super();
+		this.countryName = countryName;
+		this.year = year;
+	}
+
+
+
 	public String getCountryName() {
 		return countryName;
 	}

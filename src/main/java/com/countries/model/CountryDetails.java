@@ -128,6 +128,49 @@ public class CountryDetails {
 		public CountryDetails build() {
 			return new CountryDetails(this);
 		}
-
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (area ^ (area >>> 32));
+		result = prime * result + ((capital == null) ? 0 : capital.hashCode());
+		result = prime * result + ((currency == null) ? 0 : currency.hashCode());
+		result = prime * result + (int) (grosDomesticProduct ^ (grosDomesticProduct >>> 32));
+		result = prime * result + (int) (grosDomesticProductPerPerson ^ (grosDomesticProductPerPerson >>> 32));
+		result = prime * result + (int) (population ^ (population >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CountryDetails other = (CountryDetails) obj;
+		if (area != other.area)
+			return false;
+		if (capital == null) {
+			if (other.capital != null)
+				return false;
+		} else if (!capital.equals(other.capital))
+			return false;
+		if (currency == null) {
+			if (other.currency != null)
+				return false;
+		} else if (!currency.equals(other.currency))
+			return false;
+		if (grosDomesticProduct != other.grosDomesticProduct)
+			return false;
+		if (grosDomesticProductPerPerson != other.grosDomesticProductPerPerson)
+			return false;
+		if (population != other.population)
+			return false;
+		return true;
+	}
+	
 }
