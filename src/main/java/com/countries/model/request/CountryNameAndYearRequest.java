@@ -11,7 +11,7 @@ import com.countries.model.CountryNameAndYear;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CountryNameAndYearRequest {
 
-	@XmlElement(name = "countryNameAndYear")
+	@XmlElement(name = "country_name_and_year")
 	private CountryNameAndYear countryNameAndYear;
 
 	public CountryNameAndYearRequest() {

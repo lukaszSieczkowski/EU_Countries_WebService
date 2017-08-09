@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/GdpByYearResponse"
+	xmlns:tns="http://www.example.org/GdpByYearResponse"
+	elementFormDefault="qualified">
+
+	<element name="gdpByYearResponse" type="tns:GdpByYearResponse"></element>
+
+	<complexType name="GdpByYearResponse">
+		<sequence>
+			<element name="country_name_and_gdp" type="tns:CountryNameAndGdp"></element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="CountryNameAndGdp">
+	<sequence>
+		<element name="country_name" type="string"></element>
+		<element name="gdp" type="double"></element>
+	</sequence>
+	</complexType>
+</schema>

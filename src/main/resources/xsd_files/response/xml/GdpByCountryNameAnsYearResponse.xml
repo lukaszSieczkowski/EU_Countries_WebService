@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:gdpByCountryNameAndYearResponse
+	xmlns:tns="http://www.example.org/GdpByCountryNameAnsYear" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/GdpByCountryNameAnsYear ../xsd/GdpByCountryNameAnsYearResponse.xsd ">
+	<tns:gdp>tns:gdp</tns:gdp>
+</tns:gdpByCountryNameAndYearResponse>

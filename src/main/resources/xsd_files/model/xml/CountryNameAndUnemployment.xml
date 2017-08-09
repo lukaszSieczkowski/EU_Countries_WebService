@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:countryNameAndEmployment xmlns:tns="http://www.countries.com/CountryNameAndUnemployment" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/CountryNameAndUnemployment ../xsd/CountryNameAndUnemployment.xsd ">
+  <tns:country_name>tns:country_name</tns:country_name>
+  <tns:unemployment>0.0</tns:unemployment>
+</tns:countryNameAndEmployment>

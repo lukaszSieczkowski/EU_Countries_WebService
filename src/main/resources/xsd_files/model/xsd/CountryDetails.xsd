@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.countries.com/CountryDetails"
+	xmlns:tns="http://www.countries.com/CountryDetails" elementFormDefault="qualified">
+	
+	<element name="countryDetails" type="tns:CountryDetails"/>
+	
+	<complexType name="CountryDetails">
+		<sequence>
+			<element name="area" type="long"/>
+			<element name="population" type="long"/>
+			<element name ="capital" type="string"/>
+			<element name="curency" type="string"/>
+			<element name="gros_domestic_product" type="long"/>
+			<element name="gros_domestic_product_per_person" type="long"/>
+		</sequence>
+	</complexType>
+</schema>

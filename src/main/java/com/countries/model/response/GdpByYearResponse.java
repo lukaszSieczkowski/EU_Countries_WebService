@@ -13,7 +13,7 @@ import com.countries.model.CountryNameAndGdp;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class GdpByYearResponse {
 
-	@XmlElement(name = "countryNameAndGdp")
+	@XmlElement(name = "country_name_and_gdp")
 	private List<CountryNameAndGdp> countryNameAndGdp;
 
 	public GdpByYearResponse() {

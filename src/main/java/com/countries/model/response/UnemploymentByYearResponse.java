@@ -13,7 +13,7 @@ import com.countries.model.CountryNameAndUnemployment;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class UnemploymentByYearResponse {
 
-	@XmlElement(name = "countryNameAndYear")
+	@XmlElement(name = "country_name_and_year")
 	private List<CountryNameAndUnemployment> countryNameAndUnemployment;
 
 	public UnemploymentByYearResponse() {

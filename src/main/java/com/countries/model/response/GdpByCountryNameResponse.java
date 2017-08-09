@@ -11,7 +11,7 @@ import com.countries.model.GrosDomesticProduct;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class GdpByCountryNameResponse {
 
-	@XmlElement(name = "grosDomesticProduct")
+	@XmlElement(name = "gdp")
 	private GrosDomesticProduct grosDomesticProduct;
 
 	public GdpByCountryNameResponse() {

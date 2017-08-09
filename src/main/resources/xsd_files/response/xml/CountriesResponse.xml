@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:countriesResponse xmlns:tns="http://www.example.org/CountriesResponse" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/CountriesResponse ../xsd/CountriesResponse.xsd ">
+  <tns:country>
+    <tns:country_name>tns:country_name</tns:country_name>
+    <tns:country_code>tns:country_code</tns:country_code>
+  </tns:country>
+</tns:countriesResponse>

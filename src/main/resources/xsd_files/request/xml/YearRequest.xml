@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:yearRequest xmlns:tns="http://www.example.org/YearRequest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/YearRequest ../xsd/YearRequest.xsd ">
+  <tns:YearRequest/>
+</tns:yearRequest>

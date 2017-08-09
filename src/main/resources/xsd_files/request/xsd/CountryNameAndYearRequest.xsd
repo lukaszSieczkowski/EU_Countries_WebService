@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.countries.com/CountryNameAndYear"
+	xmlns:tns="http://www.countries.com/CountryNameAndYear"
+	elementFormDefault="qualified">
+
+	<element name="countryNameAndYearRequest" type="tns:CountryNameAndYearRequest"></element>
+
+	<complexType name="CountryNameAndYearRequest">
+		<sequence>
+			<element name="country_name_and_year" type="tns:CountryNameAndYear"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="CountryNameAndYear">
+		<sequence>
+			<element name="country_name" type="string"></element>
+			<element name="year" type="int"></element>
+		</sequence>
+	</complexType>
+</schema>

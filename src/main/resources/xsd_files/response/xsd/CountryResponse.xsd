@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/CountryResponse"
+	xmlns:tns="http://www.example.org/CountryResponse" elementFormDefault="qualified">
+
+	<element name="countryResponse" type="tns:CountryReponse"></element>
+
+	<complexType name="CountryReponse">
+		<sequence>
+			<element name="country" type="tns:Country"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="Country">
+		<sequence>
+			<element name="country_name" type="string"></element>
+			<element name="county_code" type="string"></element>
+		</sequence>
+	</complexType>
+
+</schema>

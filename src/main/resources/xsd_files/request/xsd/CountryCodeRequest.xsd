@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.countries.com/CountryCodeRequest"
+	xmlns:tns="http://www.countries.com/CountryCodeRequest"
+	elementFormDefault="qualified">
+	
+	<element name="countryCodeRequest" type="tns:CountryCodeRequest"></element>
+	
+	<complexType name="CountryCodeRequest">
+	<sequence>
+		<element name="country_code" type="string"></element>
+	</sequence>
+	</complexType>
+	
+	<simpleType name="country_code">
+		<restriction base="string"></restriction>
+	</simpleType>
+</schema>

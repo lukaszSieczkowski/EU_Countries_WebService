@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.countries.com/Unemployment"
+	xmlns:tns="http://www.countries.com/Unemployment" elementFormDefault="qualified">
+	
+	<element name="unemployment" type="tns:Unemployment"></element>
+	
+	<complexType name="Unemployment">
+		<sequence>
+			<element name="unemployment_2003" type = "double"></element>
+			<element name="unemployment_2004" type = "double"></element>
+			<element name="unemployment_2005" type = "double"></element>
+			<element name="unemployment_2006" type = "double"></element>
+			<element name="unemployment_2007" type = "double"></element>
+			<element name="unemployment_2008" type = "double"></element>
+			<element name="unemployment_2009" type = "double"></element>
+			<element name="unemployment_2010" type = "double"></element>
+			<element name="unemployment_2011" type = "double"></element>
+			<element name="unemployment_2012" type = "double"></element>
+		</sequence>
+	</complexType>
+</schema>

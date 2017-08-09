@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/GrosDomesticProduct"
+ xmlns:tns="http://www.example.org/GrosDomesticProduct" elementFormDefault="qualified">
+ 
+ <element name="grosDomesticProduct" type="tns:GrosDomesticProduct"></element>
+ 
+ <complexType name="GrosDomesticProduct">
+ <sequence>
+ 	<element name="gdp_2003" type="double"></element>
+ 	<element name="gdp_2004" type="double"></element>
+ 	<element name="gdp_2005" type="double"></element>
+ 	<element name="gdp_2006" type="double"></element>
+ 	<element name="gdp_2007" type="double"></element>
+ 	<element name="gdp_2008" type="double"></element>
+ 	<element name="gdp_2009" type="double"></element>
+ 	<element name="gdp_2010" type="double"></element>
+ 	<element name="gdp_2011" type="double"></element>
+ 	<element name="gdp_2012" type="double"></element>
+ 	<element name="gdp_2013" type="double"></element>
+ 	<element name="gdp_2014" type="double"></element>
+ </sequence>
+ </complexType>
+</schema>

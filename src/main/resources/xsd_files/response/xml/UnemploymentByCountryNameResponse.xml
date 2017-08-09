@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:unemploymentByCountryNameResponse xmlns:tns="http://www.example.org/UnemploymentByCountryNameResponse" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/UnemploymentByCountryNameResponse ../xsd/UnemploymentByCountryNameResponse.xsd ">
+  <tns:unemployment>
+    <tns:unemployment_2003>0.0</tns:unemployment_2003>
+    <tns:unemployment_2004>0.0</tns:unemployment_2004>
+    <tns:unemployment_2005>0.0</tns:unemployment_2005>
+    <tns:unemployment_2006>0.0</tns:unemployment_2006>
+    <tns:unemployment_2007>0.0</tns:unemployment_2007>
+    <tns:unemployment_2008>0.0</tns:unemployment_2008>
+    <tns:unemployment_2009>0.0</tns:unemployment_2009>
+    <tns:unemployment_2010>0.0</tns:unemployment_2010>
+    <tns:unemployment_2011>0.0</tns:unemployment_2011>
+    <tns:unemployment_2012>0.0</tns:unemployment_2012>
+  </tns:unemployment>
+</tns:unemploymentByCountryNameResponse>

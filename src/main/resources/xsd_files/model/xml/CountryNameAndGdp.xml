@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:countryNameAndGdp xmlns:tns="http://www.countries.com/CountryNameAndGdp" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.countries.com/CountryNameAndGdp ../xsd/CountryNameAndGdp.xsd ">
+  <tns:country_name>tns:country_name</tns:country_name>
+  <tns:gdp>0.0</tns:gdp>
+</tns:countryNameAndGdp>

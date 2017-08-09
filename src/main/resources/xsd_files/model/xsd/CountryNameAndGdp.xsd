@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.countries.com/CountryNameAndGdp"
+	xmlns:tns="http://www.countries.com/CountryNameAndGdp"
+	elementFormDefault="qualified">
+	
+	<element name="countryNameAndGdp" type="tns:CountryNameAndGdp"></element>
+
+	<complexType name="CountryNameAndGdp">
+		<sequence>
+			<element name="country_name" type="string"></element>
+			<element name="gdp" type="double"></element>
+		</sequence>
+	</complexType>
+</schema>

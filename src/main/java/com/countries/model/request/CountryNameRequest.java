@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CountryNameRequest {
 
-	@XmlElement(name = "countryName", required = true)
+	@XmlElement(name = "country_name", required = true)
 	private String countryName;
 
 	public CountryNameRequest() {

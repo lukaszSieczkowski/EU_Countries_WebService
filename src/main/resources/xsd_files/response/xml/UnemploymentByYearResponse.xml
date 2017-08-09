@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:unemploymentByYearResponse xmlns:tns="http://www.example.org/UnemploymentByYearResponse" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/UnemploymentByYearResponse ../xsd/UnemploymentByYearResponse.xsd ">
+  <tns:country_name_and_year>
+    <tns:country_name>tns:country_name</tns:country_name>
+    <tns:year>0</tns:year>
+  </tns:country_name_and_year>
+</tns:unemploymentByYearResponse>

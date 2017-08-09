@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:countryCodeRequest xmlns:tns="http://www.countries.com/CountryCodeRequest"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.countries.com/CountryCodeRequest ../xsd/CountryCodeRequest.xsd ">
+	<tns:country_code>tns:country_code</tns:country_code>
+</tns:countryCodeRequest>

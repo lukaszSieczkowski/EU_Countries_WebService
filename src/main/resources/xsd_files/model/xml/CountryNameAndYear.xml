@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:countryNameAndYear xmlns:tns="http://www.countries.com/CountryNameAndYear" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.countries.com/CountryNameAndYear ../xsd/CountryNameAndYear.xsd ">
+  <tns:country_name>tns:country_name</tns:country_name>
+  <tns:year>0</tns:year>
+</tns:countryNameAndYear>

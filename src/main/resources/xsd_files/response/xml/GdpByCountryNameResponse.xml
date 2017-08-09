@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:gdpByCountryNameResponse xmlns:tns="http://www.example.org/GdpByCountryNameResponse" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/GdpByCountryNameResponse ../xsd/GdpByCountryNameResponse.xsd ">
+  <tns:gdp>
+    <tns:gdp_2003>0.0</tns:gdp_2003>
+    <tns:gdp_2004>0.0</tns:gdp_2004>
+    <tns:gdp_2005>0.0</tns:gdp_2005>
+    <tns:gdp_2006>0.0</tns:gdp_2006>
+    <tns:gdp_2007>0.0</tns:gdp_2007>
+    <tns:gdp_2008>0.0</tns:gdp_2008>
+    <tns:gdp_2009>0.0</tns:gdp_2009>
+    <tns:gdp_2010>0.0</tns:gdp_2010>
+    <tns:gdp_2011>0.0</tns:gdp_2011>
+    <tns:gdp_2012>0.0</tns:gdp_2012>
+    <tns:gdp_2013>0.0</tns:gdp_2013>
+    <tns:gdp_2014>0.0</tns:gdp_2014>
+  </tns:gdp>
+</tns:gdpByCountryNameResponse>

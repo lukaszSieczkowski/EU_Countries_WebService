@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/CountryNameAndUnemployment"
+	xmlns:tns="http://www.example.org/CountryNameAndUnemployment"
+	elementFormDefault="qualified">
+	
+	<element name="countryNameAndEmployment" type="tns:CountryNameAndUneployment"></element>
+
+	<complexType name="CountryNameAndUneployment">
+		<sequence>
+			<element name="country_name" type="string"></element>
+			<element name="unemployment" type="double"></element>
+		</sequence>
+	</complexType>
+</schema>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:countryDetailsReponse xmlns:tns="http://www.example.org/CountryDetailsResponse" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/CountryDetailsResponse ../xsd/CountryDetailsResponse.xsd ">
+  <tns:countryDetails>
+    <tns:area>tns:area</tns:area>
+    <tns:population>0</tns:population>
+    <tns:capital>tns:capital</tns:capital>
+    <tns:currency>tns:currency</tns:currency>
+    <tns:gros_domestic_product>0</tns:gros_domestic_product>
+    <tns:gros_domestic_product_per_person>0</tns:gros_domestic_product_per_person>
+  </tns:countryDetails>
+</tns:countryDetailsReponse>

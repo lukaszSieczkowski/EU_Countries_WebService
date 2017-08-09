@@ -9,10 +9,10 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Country {
 
-	@XmlElement(name = "countryName")
+	@XmlElement(name = "country_name")
 	private String countryName;
 
-	@XmlElement(name = "countryCode")
+	@XmlElement(name = "country_code")
 	private String countryCode;
 
 	public Country() {

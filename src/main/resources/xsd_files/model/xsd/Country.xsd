@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.countries.com/Country"
+	xmlns:tns="http://www.countries.com/Country" elementFormDefault="qualified">
+	
+	<element name="country" type="tns:Country" />
+
+	<complexType name="Country">
+		<sequence>
+			<element name="countryName" type="string"></element>
+			<element name="countryCode" type="string"></element>
+		</sequence>
+	</complexType>
+</schema>
