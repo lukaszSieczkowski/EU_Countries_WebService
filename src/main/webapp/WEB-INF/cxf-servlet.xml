@@ -4,8 +4,7 @@
 	xmlns:cxf="http://cxf.apache.org/core" xmlns:soap="http://cxf.apache.org/bindings/soap"
 	xsi:schemaLocation="http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 
-	<jaxws:server id="countryService" serviceClass="com.countries.soap.CountryProcessor" 
-		address="/countryProcessor">
+	<jaxws:server id="countryService" serviceClass="com.countries.soap.CountryProcessor">
 
 		<jaxws:serviceBean>
 			<bean class="com.countries.soap.CountryProcessorImpl" />
@@ -22,7 +21,7 @@
 			</bean>
 		</jaxws:inInterceptors>
 	</jaxws:server>
-<bean id="passwordCallback" class="com.countries.soap.PasswordCallback" />
+	<bean id="passwordCallback" class="com.countries.soap.PasswordCallback" />
 	<cxf:bus>
 		<cxf:features>
 			<cxf:logging />

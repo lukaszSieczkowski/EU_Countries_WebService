@@ -1,6 +1,7 @@
 package com.countries.soap;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,6 @@ public class PasswordCallback implements CallbackHandler {
 		for (int i = 0; i < callbacks.length; i++) {
 			WSPasswordCallback pc = (WSPasswordCallback) callbacks[i];
 			String pass = passwords.get(pc.getIdentifier());
-
 			if (pass != null) {
 				pc.setPassword(pass);
 				return;
@@ -33,8 +33,8 @@ public class PasswordCallback implements CallbackHandler {
 		}
 	}
 
+	
 	public Map<String, String> conventUsersListToMap(List<UserEntity> users) {
-
 		Map<String, String> passwords = new HashMap<>();
 		for (UserEntity userEntity : users) {
 			passwords.put(userEntity.getUserName(), userEntity.getPassword());
