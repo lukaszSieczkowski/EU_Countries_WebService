@@ -1,4 +1,4 @@
-package com.countries.soap;
+/**package com.countries.soap;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,3 +44,4 @@ public class PasswordCallback implements CallbackHandler {
 	}
 
 }
+*/
