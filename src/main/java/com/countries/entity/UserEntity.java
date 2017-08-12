@@ -46,4 +46,9 @@ public class UserEntity {
 		this.password = password;
 	}
 
+	@Override
+	public String toString() {
+		return "UserEntity [id=" + id + ", userName=" + userName + ", password=" + password + "]";
+	}
+
 }
