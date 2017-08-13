@@ -1,4 +1,4 @@
-package com.countries.soap;
+package com.countries.security;
 
 import java.io.IOException;
 import java.util.HashMap;

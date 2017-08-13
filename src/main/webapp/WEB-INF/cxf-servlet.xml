@@ -6,10 +6,12 @@
 
 	<jaxws:server id="countryService" serviceClass="com.countries.soap.CountryProcessor"
 		address="/countryProcessor">
-
 		<jaxws:serviceBean>
 			<bean class="com.countries.soap.CountryProcessorImpl" />
 		</jaxws:serviceBean>
+		<jaxws:handlers>
+			<ref bean="siteHandler" />
+		</jaxws:handlers>
 		<jaxws:inInterceptors>
 			<bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
 				<constructor-arg>
@@ -22,7 +24,10 @@
 			</bean>
 		</jaxws:inInterceptors>
 	</jaxws:server>
-	<bean id="passwordCallback" class="com.countries.soap.PasswordCallback" />
+	<bean id="passwordCallback" class="com.countries.security.PasswordCallback" />
+	<bean id="siteHandler" class="com.countries.handlers.SiteHandler" />
+
+
 	<cxf:bus>
 		<cxf:features>
 			<cxf:logging />
