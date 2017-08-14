@@ -1,0 +1,41 @@
+
+##  Create public  key for service
+
+keytool -genkey -keyalg RSA -sigalg SHA1withRSA -validity 600 -alias myservicekey -keypass skpass -storepass sspass -keystore serviceKeystore.jks -dname "cn=Lukasz"
+
+keytool		-	java tool for keys,
+-genkey		-	create key,
+-keyang		-	key algorithm (RSA),
+-sigalg		-	signature algorithm (SHA1withRSA),
+-validity	-	validity of key (in days),
+-alias		-	name for key (variable),
+-keypass	-	passwords for key,
+-storepass	-	password for store(container for key),
+-keystore	-	key store file name,
+-dname		-	personal information about key creator.
+
+
+## Export public key for service to certificate
+
+keytool -export -rfc -keystore serviceKeystore.jks -storepass sspass -alias myservicekey -file MyService.cer
+
+keytool		-	java tool for keys,
+-export		-	export key to certificate,
+-rfc		-	creates certificate in printable version(not binary),
+-keystore	-	name of keystore file (clientKeystore.jks)
+-storepass	-	password for store(container for key),
+-alias		-	name for key (variable),
+-file		-	certificate file name (MyClient.cer)
+
+## Export certificates to alternate keystores (service certificate into client keystore and client certificate into service keystore )
+
+keytool -import -trustcacerts -keystore serviceKeystore.jks -storepass sspass -alias myclientkey -file MyClient.cer -noprompt
+
+keytool			-	java tool for keys,
+-import			-	import certificate into keystore,
+-trustcacerts	-	informs that our certificate ( not signed by cartifiaction authority - not trusted) is a chain of cacerts certificates(part of jdk and signed by certification authority)
+-keystore		- 	name of keystore file (where certificate will be imported),
+-storepass		-	password for store(container for key),
+-alias			-	name for key (with is imported into keystore),
+-file			- 	certificate file name(from will be key imported)
+-noprompt		-	no additional questions about trusting
