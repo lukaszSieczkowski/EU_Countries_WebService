@@ -16,11 +16,11 @@
 			<bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
 				<constructor-arg>
 					<map>
-						<entry key="action" value="UsernameToken Encrypt" />
+						<entry key="action" value="UsernameToken Encrypt Signature" />
 						<entry key="passwordType" value="PasswordText" />
 						<entry key="passwordCallbackRef" value-ref="passwordCallback" />
 						<entry key="decryptionPropFile" value="etc/serviceKeyStore.properties" />
-					<!--	<entry key="signaturePropFile" value="etc/serviceKeyStore.properties" />-->
+						<entry key="signaturePropFile" value="etc/serviceKeyStore.properties" />
 
 					</map>
 				</constructor-arg>
@@ -32,12 +32,12 @@
 			<bean class="org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor">
 				<constructor-arg>
 					<map>
-						<entry key="action" value="Encrypt" />
+						<entry key="action" value="Encrypt Signature" />
 						<entry key="passwordCallbackRef" value-ref="passwordCallback" />
 						<entry key="encryptionPropFile" value="etc/serviceKeyStore.properties" />
 						<entry key="encryptionUser" value="myclientkey" />
-					<!--  <entry key="signaturePropFile" value="etc/serviceKeyStore.properties" />
-						<entry key="signatureUser" value="myservicekey" /> -->	
+				 		<entry key="signaturePropFile" value="etc/serviceKeyStore.properties" />
+						<entry key="signatureUser" value="myservicekey" /> 	
 					</map>
 				</constructor-arg>
 			</bean>
