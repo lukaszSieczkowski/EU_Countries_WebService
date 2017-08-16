@@ -39,5 +39,4 @@ public class CountryNameAndGdp {
 		return "CountryNameAndGdp [countryName=" + countryName + ", gdp=" + gdp + "]";
 	}
 
-	
 }

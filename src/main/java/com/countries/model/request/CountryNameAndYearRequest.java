@@ -17,13 +17,11 @@ public class CountryNameAndYearRequest {
 	public CountryNameAndYearRequest() {
 		super();
 	}
-	
+
 	public CountryNameAndYearRequest(CountryNameAndYear countryNameAndYear) {
 		super();
 		this.countryNameAndYear = countryNameAndYear;
 	}
-
-
 
 	public CountryNameAndYear getCountryNameAndYear() {
 		return countryNameAndYear;

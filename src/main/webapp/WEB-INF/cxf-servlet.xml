@@ -21,13 +21,11 @@
 						<entry key="passwordCallbackRef" value-ref="passwordCallback" />
 						<entry key="decryptionPropFile" value="etc/serviceKeyStore.properties" />
 						<entry key="signaturePropFile" value="etc/serviceKeyStore.properties" />
-		
 					</map>
 				</constructor-arg>
 			</bean>
 		</jaxws:inInterceptors>
-
-
+		
 		<jaxws:outInterceptors>
 			<bean class="org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor">
 				<constructor-arg>
@@ -36,19 +34,17 @@
 						<entry key="passwordCallbackRef" value-ref="passwordCallback" />
 						<entry key="encryptionPropFile" value="etc/serviceKeyStore.properties" />
 						<entry key="encryptionUser" value="myclientkey" />
-				 		<entry key="signaturePropFile" value="etc/serviceKeyStore.properties" />
-						<entry key="signatureUser" value="myservicekey" /> 
-						<entry key="timeToLive" value="30"	/>
+						<entry key="signaturePropFile" value="etc/serviceKeyStore.properties" />
+						<entry key="signatureUser" value="myservicekey" />
+						<entry key="timeToLive" value="30" />
 					</map>
 				</constructor-arg>
 			</bean>
 		</jaxws:outInterceptors>
 
-
 	</jaxws:server>
 	<bean id="passwordCallback" class="com.countries.security.PasswordCallback" />
 	<bean id="siteHandler" class="com.countries.handlers.SiteHandler" />
-
 
 	<cxf:bus>
 		<cxf:features>

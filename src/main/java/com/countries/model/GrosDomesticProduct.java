@@ -299,6 +299,5 @@ public class GrosDomesticProduct {
 			return false;
 		return true;
 	}
-	
-	
+
 }

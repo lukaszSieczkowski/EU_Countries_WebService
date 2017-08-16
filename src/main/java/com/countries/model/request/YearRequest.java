@@ -14,7 +14,6 @@ public class YearRequest {
 	public YearRequest() {
 		super();
 	}
-	
 
 	public YearRequest(int year) {
 		super();
@@ -28,6 +27,5 @@ public class YearRequest {
 	public void setYear(int year) {
 		this.year = year;
 	}
-
 
 }

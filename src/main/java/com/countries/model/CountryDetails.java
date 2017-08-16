@@ -172,5 +172,5 @@ public class CountryDetails {
 			return false;
 		return true;
 	}
-	
+
 }

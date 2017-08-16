@@ -25,8 +25,6 @@ public class Country {
 		this.countryCode = countryCode;
 	}
 
-
-
 	public String getCountryName() {
 		return countryName;
 	}
@@ -79,5 +77,4 @@ public class Country {
 		return true;
 	}
 
-	
 }

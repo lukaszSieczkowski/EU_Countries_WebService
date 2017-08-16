@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CountryNameAndYear {
-	
+
 	@XmlElement(name = "country_name")
 	private String countryName;
 	@XmlElement(name = "year")
@@ -23,8 +23,6 @@ public class CountryNameAndYear {
 		this.countryName = countryName;
 		this.year = year;
 	}
-
-
 
 	public String getCountryName() {
 		return countryName;
