@@ -7,6 +7,22 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>EU_Countries Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<failOnMissingWebXml>false</failOnMissingWebXml>
+		<spring.version>4.3.0.RELEASE</spring.version>
+		<servlet.version>3.1.0</servlet.version>
+		<hibernate.version>5.2.5.Final</hibernate.version>
+		<mysql.connector.version>5.1.39</mysql.connector.version>
+		<spring-data.version>1.10.2.RELEASE</spring-data.version>
+	</properties>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>smartbear-sweden-plugin-repository</id>
+			<url>http://www.soapui.org/repository/maven2/</url>
+		</pluginRepository>
+	</pluginRepositories>
 	<build>
 		<plugins>
 			<plugin>
@@ -25,20 +41,50 @@
 					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
 				</configuration>
 			</plugin>
-			
+			<plugin>
+				<groupId>com.smartbear.soapui</groupId>
+				<artifactId>soapui-pro-maven-plugin</artifactId>
+				<version>5.1.1</version>
+				<executions>
+					<execution>
+						<phase>test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<configuration>
+							<projectFile>${basedir}/src/main/resources/Soap_UI_Tests/EU-Countries-Service-soapui-project.xml</projectFile>
+							<projectProperties>
+								<value>message=SoapUI Test</value>
+							</projectProperties>
+							 <junitReport>true</junitReport>
+                            <outputFolder>./report</outputFolder>
+                            <printReport>true</printReport>
+                            <globalProperties>
+                                <value>EnvironmentProperties=${soapuiPropertiesFile}</value>
+                                <value>EndpointUrl=${restEndpointUrl}</value>
+                                <value>SocialEndpointUrl=${socialEndpointUrl}</value>
+                                <value>user=${testUser}</value>
+                                <value>pass=${testPass}</value>
+                                <value>ServiceBasePath=${serviceBasePath}</value>
+                            </globalProperties>
+							
+                        </configuration>
+					</execution>
+				</executions>
+				 <dependencies>  
+                    <dependency>  
+                        <groupId>org.reflections</groupId>  
+                        <artifactId>reflections-maven</artifactId>  
+                        <version>0.9.9-RC2</version>  
+                    </dependency>  
+                </dependencies>  
+				
+			</plugin>
+
 		</plugins>
 		<finalName>EU_Countries</finalName>
 	</build>
-	<properties>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<failOnMissingWebXml>false</failOnMissingWebXml>
-		<spring.version>4.3.0.RELEASE</spring.version>
-		<servlet.version>3.1.0</servlet.version>
-		<hibernate.version>5.2.5.Final</hibernate.version>
-		<mysql.connector.version>5.1.39</mysql.connector.version>
-		<spring-data.version>1.10.2.RELEASE</spring-data.version>
-	</properties>
+
 	<dependencies>
 
 		<dependency>
