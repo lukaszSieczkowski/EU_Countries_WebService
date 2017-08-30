@@ -23,6 +23,7 @@
 				</constructor-arg>
 			</bean>
 		</jaxws:inInterceptors>
+			
 	</jaxws:server>
 	<bean id="passwordCallback" class="com.countries.security.PasswordCallback" />
 	<bean id="siteHandler" class="com.countries.handlers.SiteHandler" />
