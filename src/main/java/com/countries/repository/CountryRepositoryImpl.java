@@ -24,6 +24,7 @@ public class CountryRepositoryImpl implements CountryRepository {
 				.createQuery("Select p from CountryEntity p where p.countryCode = '" + countryCode + "'");
 		CountryEntity countryEntity = (CountryEntity) query.getSingleResult();
 		entityManager.close();
+		emFactory.close();
 		return countryEntity;
 	}
 
@@ -35,6 +36,7 @@ public class CountryRepositoryImpl implements CountryRepository {
 				.createQuery("Select p from CountryEntity p where p.countryName = '" + countryName + "'");
 		CountryEntity countryEntity = (CountryEntity) query.getSingleResult();
 		entityManager.close();
+		emFactory.close();
 		return countryEntity;
 	}
 
@@ -44,6 +46,7 @@ public class CountryRepositoryImpl implements CountryRepository {
 		List<CountryEntity> countries = new ArrayList<>();
 		countries = entityManager.createQuery("SELECT p FROM CountryEntity p").getResultList();
 		entityManager.close();
+		emFactory.close();
 		return countries;
 	}
 
@@ -53,6 +56,7 @@ public class CountryRepositoryImpl implements CountryRepository {
 		List<Object[]> object = entityManager.createQuery("SELECT distinct c.countryName,u.unemployment_" + year
 				+ " FROM CountryEntity c JOIN UnemploymentEntity u ON c.id = u.country ").getResultList();
 		entityManager.close();
+		emFactory.close();
 		return object;
 	}
 
@@ -63,6 +67,7 @@ public class CountryRepositoryImpl implements CountryRepository {
 				+ " FROM CountryEntity c JOIN GrosDomesticProductYearToYearEntity g ON c.id = g.country WHERE c.countryName = '"
 				+ countryName + "'").getSingleResult();
 		entityManager.close();
+		emFactory.close();
 		return gdp;
 	}
 
@@ -75,6 +80,7 @@ public class CountryRepositoryImpl implements CountryRepository {
 						+ " FROM CountryEntity c JOIN GrosDomesticProductYearToYearEntity g ON c.id = g.country ")
 				.getResultList();
 		entityManager.close();
+		emFactory.close();
 		return object;
 	}
 
