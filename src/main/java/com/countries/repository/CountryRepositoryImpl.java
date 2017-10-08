@@ -17,7 +17,6 @@ import com.countries.entity.CountryEntity;
 public class CountryRepositoryImpl implements CountryRepository {
 
 	public CountryEntity findByCountryCode(String countryCode) {
-
 		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("myPersistanceUnit");
 		EntityManager entityManager = emFactory.createEntityManager();
 		Query query = entityManager
@@ -28,7 +27,6 @@ public class CountryRepositoryImpl implements CountryRepository {
 	}
 
 	public CountryEntity findByCountryName(String countryName) {
-
 		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("myPersistanceUnit");
 		EntityManager entityManager = emFactory.createEntityManager();
 		Query query = entityManager

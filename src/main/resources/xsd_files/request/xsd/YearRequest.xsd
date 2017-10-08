@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/YearRequest"
 	xmlns:tns="http://www.example.org/YearRequest" elementFormDefault="qualified">
-	
-	<element name="yearRequest" type="tns:YearRequest"></element>
-	
-	<complexType name="YearRequest">
-	<sequence>
-		<element name="YearRequest"></element>
-	</sequence>
+
+	<element name="yearRequest" type="tns:yearRequest"></element>
+
+	<complexType name="yearRequest">
+		<sequence>
+			<element name="year" type ="integer"></element>
+		</sequence>
 	</complexType>
 </schema>

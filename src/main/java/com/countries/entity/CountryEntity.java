@@ -39,6 +39,14 @@ public class CountryEntity {
 		super();
 	}
 
+	
+	public CountryEntity(String countryName, String countryCode) {
+		super();
+		this.countryName = countryName;
+		this.countryCode = countryCode;
+	}
+
+
 	public long getId() {
 		return id;
 	}

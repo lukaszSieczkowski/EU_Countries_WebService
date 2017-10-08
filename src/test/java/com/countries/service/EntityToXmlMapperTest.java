@@ -3,13 +3,19 @@ package com.countries.service;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hamcrest.collection.IsEmptyCollection;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
+import com.countries.entity.CountryDetailsEntity;
 import com.countries.entity.CountryEntity;
+import com.countries.entity.UnemploymentEntity;
 import com.countries.model.Country;
 import com.countries.model.CountryDetails;
 import com.countries.model.GrosDomesticProduct;
@@ -21,34 +27,56 @@ import com.countries.repository.CountryRepositoryImpl;
 
 public class EntityToXmlMapperTest {
 
-	EntityToXmlMapper entityToXmlMapper;
+	@Mock
 	CountryRepositoryImpl countryRepositoryImpl;
+	EntityToXmlMapper entityToXmlMapper;
+	CountryEntity polandEntity;
+	CountryEntity netherlandsEntity;
+	CountryEntity germanyEntity;
+	List<CountryEntity> countryEntityList;
+	CountryDetails netherlandsDetails;
 
 	@Before
 	public void prepData() {
+		MockitoAnnotations.initMocks(this);
 		entityToXmlMapper = new EntityToXmlMapper();
-		countryRepositoryImpl = new CountryRepositoryImpl();
+		polandEntity = new CountryEntity("Poland", "PL");
+		countryEntityList = new ArrayList<>();
+		countryEntityList.add(polandEntity);
+		netherlandsEntity = new CountryEntity();
+		netherlandsEntity.setCountryCode("NL");
+		netherlandsEntity.setCountryName("Netherlands");
+		CountryDetailsEntity netherlandsDetailsEntity = new CountryDetailsEntity();
+		netherlandsDetailsEntity.setArea(41526);
+		netherlandsDetailsEntity.setCapital("Amsterdam");
+		netherlandsDetailsEntity.setCurency("EURO");
+		netherlandsDetailsEntity.setGrosDomesticProduct(773100000000L);
+		netherlandsDetailsEntity.setGrosDomesticProductPerPerson(46142);
+		netherlandsDetailsEntity.setPopulation(16778000);
+		netherlandsEntity.setDetails(netherlandsDetailsEntity);
+	
+	
 	}
 
 	@Test
 	public void countryEntityToCountryTest() {
-		CountryEntity countryEntity = countryRepositoryImpl.findByCountryCode("PL");
-		Country country = entityToXmlMapper.countryEntityToCountry(countryEntity);
+		Mockito.when(countryRepositoryImpl.findByCountryCode("PL")).thenReturn(polandEntity);
+		Country country = entityToXmlMapper.countryEntityToCountry(polandEntity);
 		assertNotNull(country);
 		assertEquals(new Country("Poland", "PL"), country);
 	}
 
 	@Test
 	public void countryEntityToCountryListTest() {
-		List<CountryEntity> countryEntityList = countryRepositoryImpl.findCountries();
+		Mockito.when(countryRepositoryImpl.findCountries()).thenReturn(countryEntityList);
 		List<Country> countryList = entityToXmlMapper.countryEntityToCountry(countryEntityList);
 		assertThat(countryList, not(IsEmptyCollection.empty()));
 	}
 
 	@Test
 	public void countryDetailsEntityToCountryDetailsTest() {
-		CountryEntity countryEntity = countryRepositoryImpl.findByCountryCode("NL");
-		CountryDetails countryDetails = entityToXmlMapper.countryDetailsEntityToCountryDetails(countryEntity);
+		Mockito.when(countryRepositoryImpl.findByCountryCode("NL")).thenReturn(netherlandsEntity);
+		CountryDetails countryDetails = entityToXmlMapper.countryDetailsEntityToCountryDetails(netherlandsEntity);
 		CountryDetails netherlandsDetails = new CountryDetails.Builder().area(41526).capital("Amsterdam")
 				.currency("EURO").grosDomesticProduct(773100000000L).grosDomesticProductPerPerson(46142)
 				.population(16778000).build();
@@ -58,8 +86,8 @@ public class EntityToXmlMapperTest {
 
 	@Test
 	public void unemploymentDetailsToUnemploymentTest() {
-		CountryEntity countryEntity = countryRepositoryImpl.findByCountryName("Germany");
-		Unemployment unemployment = entityToXmlMapper.unemploymentDetailsToUnemployment(countryEntity);
+		Mockito.when(countryRepositoryImpl.findByCountryName("Germany")).thenReturn(germanyEntity);
+		Unemployment unemployment = entityToXmlMapper.unemploymentDetailsToUnemployment(germanyEntity);
 		Unemployment germanyUnemployment = new Unemployment.Builder().unemployment_2003(9.8).unemployment_2004(10.5)
 				.unemployment_2005(11.3).unemployment_2006(10.3).unemployment_2007(8.7).unemployment_2008(7.5)
 				.unemployment_2009(7.8).unemployment_2010(7.1).unemployment_2011(5.9).unemployment_2012(5.5).build();
