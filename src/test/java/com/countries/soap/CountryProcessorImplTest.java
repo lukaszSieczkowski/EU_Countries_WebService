@@ -39,6 +39,7 @@ public class CountryProcessorImplTest {
 	@Before
 	public void setData() {
 		countryProcessor = new CountryProcessorImpl();
+
 	}
 
 	@Test
