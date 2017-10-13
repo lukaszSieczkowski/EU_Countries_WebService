@@ -23,6 +23,7 @@ public class UserRepositoryImpl implements UserRepository{
 				.createQuery("SELECT u FROM UserEntity u WHERE u.userName = '" + userName + "' AND u.password = '"+password+"'");
 		UserEntity userEntity = (UserEntity) query.getSingleResult();
 		entityManager.close();
+		emFactory.close();
 		return userEntity;
 	}
 
@@ -32,6 +33,8 @@ public class UserRepositoryImpl implements UserRepository{
 		EntityManager entityManager = emFactory.createEntityManager();
 		List<UserEntity> users = new ArrayList<>();
 		users =  entityManager.createQuery("SELECT u FROM UserEntity u").getResultList();
+		entityManager.close();
+		emFactory.close();
 		return users;
 	}
 
