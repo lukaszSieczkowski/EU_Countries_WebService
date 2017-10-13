@@ -6,15 +6,25 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.hamcrest.collection.IsEmptyCollection;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import com.countries.entity.CountryEntity;
-
+@RunWith(MockitoJUnitRunner.class)
 public class CountriesRepositoryImplTest {
 
 	CountryRepositoryImpl countryRepositoryImpl;
+	
+	@Mock
+	Query query;
 
 	@Before
 	public void prepData() {
@@ -23,11 +33,12 @@ public class CountriesRepositoryImplTest {
 
 	@Test
 	public void findByCountryCodeTest() {
+		
 		CountryEntity countryEntity = countryRepositoryImpl.findByCountryCode("NL");
 		assertEquals("NL", countryEntity.getCountryCode());
 		assertEquals("The Netherlands", countryEntity.getCountryName());
 	}
-
+	
 	@Test
 	public void findByCountryNameTest() {
 		CountryEntity countryEntity = countryRepositoryImpl.findByCountryName("Ireland");
@@ -61,4 +72,6 @@ public class CountriesRepositoryImplTest {
 		list = countryRepositoryImpl.findGdpByYear(2007);
 		assertThat(list, not(IsEmptyCollection.empty()));
 	}
+	
+	
 }

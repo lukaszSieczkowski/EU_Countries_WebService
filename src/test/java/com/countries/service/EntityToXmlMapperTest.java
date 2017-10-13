@@ -9,6 +9,7 @@ import java.util.List;
 import org.hamcrest.collection.IsEmptyCollection;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -29,32 +30,26 @@ import com.countries.repository.CountryRepositoryImpl;
 
 public class EntityToXmlMapperTest {
 
-	EntityToXmlMapper entityToXmlMapper;
+	EntityToXmlMapper entityToXmlMapper = new EntityToXmlMapper();
 
 	CountryEntity poland;
 
-	@Mock
 	CountryRepositoryImpl countryRepositoryImpl;
 
 	@Before
 	public void prepData() {
-		MockitoAnnotations.initMocks(this);
 		poland = preparePolandObject();
-		entityToXmlMapper = new EntityToXmlMapper();
 	}
 
 	@Test
 	public void countryEntityToCountryTest() {
-		Mockito.when(countryRepositoryImpl.findByCountryCode("PL")).thenReturn(poland);
-		Country country = entityToXmlMapper.countryEntityToCountry(poland);
-		assertNotNull(country);
-		assertEquals("PL", country.getCountryCode());
-		assertEquals("Poland", country.getCountryName());
+		assertNotNull(entityToXmlMapper.countryEntityToCountry(new CountryEntity("Poland", "PL")));
+		assertEquals(new Country("Poland", "PL"),
+				entityToXmlMapper.countryEntityToCountry(new CountryEntity("Poland", "PL")));
 	}
 
 	@Test
 	public void countryEntityToCountryListTest() {
-		Mockito.when(countryRepositoryImpl.findByCountryCode("PL")).thenReturn(poland);
 		List<CountryEntity> countries = new ArrayList<>();
 		countries.add(poland);
 		List<Country> countryList = entityToXmlMapper.countryEntityToCountry(countries);
@@ -63,7 +58,7 @@ public class EntityToXmlMapperTest {
 
 	@Test
 	public void countryDetailsEntityToCountryDetailsTest() {
-		Mockito.when(countryRepositoryImpl.findByCountryCode("PL")).thenReturn(poland);
+
 		CountryDetails countryDetails = entityToXmlMapper.countryDetailsEntityToCountryDetails(poland);
 		assertNotNull(countryDetails);
 		assertEquals(312879, countryDetails.getArea());
@@ -76,7 +71,7 @@ public class EntityToXmlMapperTest {
 
 	@Test
 	public void unemploymentDetailsToUnemploymentTest() {
-		Mockito.when(countryRepositoryImpl.findByCountryCode("PL")).thenReturn(poland);
+
 		Unemployment unemployment = entityToXmlMapper.unemploymentDetailsToUnemployment(poland);
 		assertNotNull(unemployment);
 		assertEquals(19.8, poland.getUnemployment().getUnemployment_2003(), 0);
@@ -93,7 +88,6 @@ public class EntityToXmlMapperTest {
 
 	@Test
 	public void countryNameAndYearToCountryNameAndyearResponseTest() {
-		Mockito.when(countryRepositoryImpl.findByCountryCode("PL")).thenReturn(poland);
 		UnemploymentByCountryNameAndYearResponse unemploymentByCountryNameAndYearResponse = entityToXmlMapper
 				.countryNameAndYearToCountryNameAndyearResponse(2010, poland);
 		Double unemployment = unemploymentByCountryNameAndYearResponse.getUnemployment();
@@ -105,7 +99,6 @@ public class EntityToXmlMapperTest {
 		Object[] nameUnemployment = { "Poland", 17.9 };
 		List<Object[]> objects = new ArrayList<>();
 		objects.add(nameUnemployment);
-		Mockito.when(countryRepositoryImpl.findUnemploymentByYear(2005)).thenReturn(objects);
 		UnemploymentByYearResponse unemploymentByCountryNameAll = entityToXmlMapper
 				.conventObjectToUnemploymentCountryNameAndYerListResponse(objects);
 		assertEquals("Poland", unemploymentByCountryNameAll.getCountryNameAndUnemployment().get(0).getCountryName());
@@ -114,8 +107,6 @@ public class EntityToXmlMapperTest {
 
 	@Test
 	public void grosDomesticProductEntityToGrossDomesticProductTest() {
-
-		Mockito.when(countryRepositoryImpl.findByCountryName("Poland")).thenReturn(poland);
 		GrosDomesticProduct domesticProduct = entityToXmlMapper.grosDomesticProductEntityToGrossDomesticProduct(poland);
 
 		assertNotNull(domesticProduct);
@@ -138,7 +129,6 @@ public class EntityToXmlMapperTest {
 		Object[] nameUnemployment = { "Poland", 3.9 };
 		List<Object[]> objects = new ArrayList<>();
 		objects.add(nameUnemployment);
-		Mockito.when(countryRepositoryImpl.findGdpByYear(2003)).thenReturn(objects);
 		GdpByYearResponse response = entityToXmlMapper.conventObjectToGdpCountryNameAndYerListResponse(objects);
 		assertEquals("Poland", response.getCountryNameAndGdp().get(0).getCountryName());
 		assertEquals(3.9, response.getCountryNameAndGdp().get(0).getGdp(), 0);
@@ -189,6 +179,6 @@ public class EntityToXmlMapperTest {
 		poland.setGrosDomesticProductYearToYear(polandGDP);
 
 		return poland;
-
 	}
+
 }

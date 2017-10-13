@@ -26,13 +26,19 @@ import com.countries.repository.CountryRepositoryImpl;
 import com.countries.service.EntityToXmlMapper;
 
 public class CountryProcessorImpl implements CountryProcessor {
+	
+	CountryRepository countryRepository;
+	EntityToXmlMapper entityToXmlMapper;
+	
+	public CountryProcessorImpl() {
+		countryRepository = new CountryRepositoryImpl();
+		entityToXmlMapper = new EntityToXmlMapper();
+	}
 
 	@Override
 	public CountryResponse getCountryById(CountryCodeRequest countryCodeRequest) {
 		CountryResponse countryResponse = new CountryResponse();
 		String countryCode = countryCodeRequest.getCountryCode();
-		CountryRepository countryRepository = new CountryRepositoryImpl();
-		EntityToXmlMapper entityToXmlMapper = new EntityToXmlMapper();
 		CountryEntity countryEntity = countryRepository.findByCountryCode(countryCode);
 		Country country = entityToXmlMapper.countryEntityToCountry(countryEntity);
 		countryResponse.setCountry(country);
@@ -42,9 +48,7 @@ public class CountryProcessorImpl implements CountryProcessor {
 	@Override
 	public CountriesResponse getCountries(CountriesRequest countriesRequest) {
 		CountriesResponse countriesResponse = new CountriesResponse();
-		CountryRepository countryRepository = new CountryRepositoryImpl();
 		List<CountryEntity> countryEntityList = countryRepository.findCountries();
-		EntityToXmlMapper entityToXmlMapper = new EntityToXmlMapper();
 		List<Country> countries = entityToXmlMapper.countryEntityToCountry(countryEntityList);
 		countriesResponse.setCountries(countries);
 		return countriesResponse;

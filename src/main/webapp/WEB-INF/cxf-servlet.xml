@@ -10,7 +10,7 @@
 			<bean class="com.countries.soap.CountryProcessorImpl" />
 		</jaxws:serviceBean>
 	</jaxws:server>
- 	<bean id="passwordCallback" class="com.countries.soap.PasswordCallback" />
+ <!--  	<bean id="passwordCallback" class="com.countries.soap.PasswordCallback" /> -->
 	<cxf:bus>
 		<cxf:features>
 			<cxf:logging />
