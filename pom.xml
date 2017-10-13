@@ -56,27 +56,27 @@
 							<projectProperties>
 								<value>message=SoapUI Test</value>
 							</projectProperties>
-							 <junitReport>true</junitReport>
-                            <outputFolder>./report</outputFolder>
-                            <printReport>true</printReport>
-                            <globalProperties>
-                                <value>EnvironmentProperties=${soapuiPropertiesFile}</value>
-                                <value>EndpointUrl=${restEndpointUrl}</value>
-                                <value>SocialEndpointUrl=${socialEndpointUrl}</value>
-                                <value>user=${testUser}</value>
-                                <value>pass=${testPass}</value>
-                                <value>ServiceBasePath=${serviceBasePath}</value>
-                            </globalProperties>
-                        </configuration>
+							<junitReport>true</junitReport>
+							<outputFolder>./report</outputFolder>
+							<printReport>true</printReport>
+							<globalProperties>
+								<value>EnvironmentProperties=${soapuiPropertiesFile}</value>
+								<value>EndpointUrl=${restEndpointUrl}</value>
+								<value>SocialEndpointUrl=${socialEndpointUrl}</value>
+								<value>user=${testUser}</value>
+								<value>pass=${testPass}</value>
+								<value>ServiceBasePath=${serviceBasePath}</value>
+							</globalProperties>
+						</configuration>
 					</execution>
 				</executions>
-				 <dependencies>  
-                    <dependency>  
-                        <groupId>org.reflections</groupId>  
-                        <artifactId>reflections-maven</artifactId>  
-                        <version>0.9.9-RC2</version>  
-                    </dependency>  
-                </dependencies>  
+				<dependencies>
+					<dependency>
+						<groupId>org.reflections</groupId>
+						<artifactId>reflections-maven</artifactId>
+						<version>0.9.9-RC2</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 		<finalName>EU_Countries</finalName>
@@ -168,6 +168,12 @@
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
 			<version>2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.5</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>

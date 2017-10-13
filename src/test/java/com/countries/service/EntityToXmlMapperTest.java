@@ -3,13 +3,21 @@ package com.countries.service;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hamcrest.collection.IsEmptyCollection;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.mockito.stubbing.OngoingStubbing;
 
+import com.countries.entity.CountryDetailsEntity;
 import com.countries.entity.CountryEntity;
+import com.countries.entity.GrosDomesticProductYearToYearEntity;
+import com.countries.entity.UnemploymentEntity;
 import com.countries.model.Country;
 import com.countries.model.CountryDetails;
 import com.countries.model.GrosDomesticProduct;
@@ -22,87 +30,165 @@ import com.countries.repository.CountryRepositoryImpl;
 public class EntityToXmlMapperTest {
 
 	EntityToXmlMapper entityToXmlMapper;
+
+	CountryEntity poland;
+
+	@Mock
 	CountryRepositoryImpl countryRepositoryImpl;
 
 	@Before
 	public void prepData() {
+		MockitoAnnotations.initMocks(this);
+		poland = preparePolandObject();
 		entityToXmlMapper = new EntityToXmlMapper();
-		countryRepositoryImpl = new CountryRepositoryImpl();
 	}
 
 	@Test
 	public void countryEntityToCountryTest() {
-		CountryEntity countryEntity = countryRepositoryImpl.findByCountryCode("PL");
-		Country country = entityToXmlMapper.countryEntityToCountry(countryEntity);
+		Mockito.when(countryRepositoryImpl.findByCountryCode("PL")).thenReturn(poland);
+		Country country = entityToXmlMapper.countryEntityToCountry(poland);
 		assertNotNull(country);
-		assertEquals(new Country("Poland", "PL"), country);
+		assertEquals("PL", country.getCountryCode());
+		assertEquals("Poland", country.getCountryName());
 	}
 
 	@Test
 	public void countryEntityToCountryListTest() {
-		List<CountryEntity> countryEntityList = countryRepositoryImpl.findCountries();
-		List<Country> countryList = entityToXmlMapper.countryEntityToCountry(countryEntityList);
+		Mockito.when(countryRepositoryImpl.findByCountryCode("PL")).thenReturn(poland);
+		List<CountryEntity> countries = new ArrayList<>();
+		countries.add(poland);
+		List<Country> countryList = entityToXmlMapper.countryEntityToCountry(countries);
 		assertThat(countryList, not(IsEmptyCollection.empty()));
 	}
 
 	@Test
 	public void countryDetailsEntityToCountryDetailsTest() {
-		CountryEntity countryEntity = countryRepositoryImpl.findByCountryCode("NL");
-		CountryDetails countryDetails = entityToXmlMapper.countryDetailsEntityToCountryDetails(countryEntity);
-		CountryDetails netherlandsDetails = new CountryDetails.Builder().area(41526).capital("Amsterdam")
-				.currency("EURO").grosDomesticProduct(773100000000L).grosDomesticProductPerPerson(46142)
-				.population(16778000).build();
+		Mockito.when(countryRepositoryImpl.findByCountryCode("PL")).thenReturn(poland);
+		CountryDetails countryDetails = entityToXmlMapper.countryDetailsEntityToCountryDetails(poland);
 		assertNotNull(countryDetails);
-		assertEquals(netherlandsDetails, countryDetails);
+		assertEquals(312879, countryDetails.getArea());
+		assertEquals("Warszawa", countryDetails.getCapital());
+		assertEquals("PL", countryDetails.getCurrency());
+		assertEquals(487600000000L, countryDetails.getGrosDomesticProduct());
+		assertEquals(12538, countryDetails.getGrosDomesticProductPerPerson());
+		assertEquals(38544000, countryDetails.getPopulation());
 	}
 
 	@Test
 	public void unemploymentDetailsToUnemploymentTest() {
-		CountryEntity countryEntity = countryRepositoryImpl.findByCountryName("Germany");
-		Unemployment unemployment = entityToXmlMapper.unemploymentDetailsToUnemployment(countryEntity);
-		Unemployment germanyUnemployment = new Unemployment.Builder().unemployment_2003(9.8).unemployment_2004(10.5)
-				.unemployment_2005(11.3).unemployment_2006(10.3).unemployment_2007(8.7).unemployment_2008(7.5)
-				.unemployment_2009(7.8).unemployment_2010(7.1).unemployment_2011(5.9).unemployment_2012(5.5).build();
+		Mockito.when(countryRepositoryImpl.findByCountryCode("PL")).thenReturn(poland);
+		Unemployment unemployment = entityToXmlMapper.unemploymentDetailsToUnemployment(poland);
 		assertNotNull(unemployment);
-		assertEquals(germanyUnemployment, unemployment);
+		assertEquals(19.8, poland.getUnemployment().getUnemployment_2003(), 0);
+		assertEquals(19.1, poland.getUnemployment().getUnemployment_2004(), 0);
+		assertEquals(17.9, poland.getUnemployment().getUnemployment_2005(), 0);
+		assertEquals(13.9, poland.getUnemployment().getUnemployment_2006(), 0);
+		assertEquals(9.6, poland.getUnemployment().getUnemployment_2007(), 0);
+		assertEquals(7.1, poland.getUnemployment().getUnemployment_2008(), 0);
+		assertEquals(8.1, poland.getUnemployment().getUnemployment_2009(), 0);
+		assertEquals(9.7, poland.getUnemployment().getUnemployment_2010(), 0);
+		assertEquals(9.7, poland.getUnemployment().getUnemployment_2011(), 0);
+		assertEquals(10.1, poland.getUnemployment().getUnemployment_2012(), 0);
 	}
 
 	@Test
 	public void countryNameAndYearToCountryNameAndyearResponseTest() {
-		CountryEntity countryEntity = countryRepositoryImpl.findByCountryCode("CZ");
+		Mockito.when(countryRepositoryImpl.findByCountryCode("PL")).thenReturn(poland);
 		UnemploymentByCountryNameAndYearResponse unemploymentByCountryNameAndYearResponse = entityToXmlMapper
-				.countryNameAndYearToCountryNameAndyearResponse(2010, countryEntity);
+				.countryNameAndYearToCountryNameAndyearResponse(2010, poland);
 		Double unemployment = unemploymentByCountryNameAndYearResponse.getUnemployment();
-		assertEquals(7.3, unemployment, 0);
+		assertEquals(9.7, unemployment, 0);
 	}
 
 	@Test
 	public void conventObjectToUnemploymentCountryNameAndYerListResponseTest() {
-		List<Object[]> objects = countryRepositoryImpl.findUnemploymentByYear(2005);
+		Object[] nameUnemployment = { "Poland", 17.9 };
+		List<Object[]> objects = new ArrayList<>();
+		objects.add(nameUnemployment);
+		Mockito.when(countryRepositoryImpl.findUnemploymentByYear(2005)).thenReturn(objects);
 		UnemploymentByYearResponse unemploymentByCountryNameAll = entityToXmlMapper
 				.conventObjectToUnemploymentCountryNameAndYerListResponse(objects);
-		assertEquals("Cyprus", unemploymentByCountryNameAll.getCountryNameAndUnemployment().get(3).getCountryName());
-		assertEquals(5.3, unemploymentByCountryNameAll.getCountryNameAndUnemployment().get(3).getUnemployment(), 0);
+		assertEquals("Poland", unemploymentByCountryNameAll.getCountryNameAndUnemployment().get(0).getCountryName());
+		assertEquals(17.9, unemploymentByCountryNameAll.getCountryNameAndUnemployment().get(0).getUnemployment(), 0);
 	}
 
 	@Test
 	public void grosDomesticProductEntityToGrossDomesticProductTest() {
-		CountryEntity countryEntity = countryRepositoryImpl.findByCountryName("Finland");
-		GrosDomesticProduct domesticProduct = entityToXmlMapper
-				.grosDomesticProductEntityToGrossDomesticProduct(countryEntity);
-		GrosDomesticProduct gdpFinland = new GrosDomesticProduct.Builder().gdp_2003(2).gdp_2004(4.1).gdp_2005(2.9)
-				.gdp_2006(4.4).gdp_2007(5.3).gdp_2008(0.3).gdp_2009(-8.5).gdp_2010(3.3).gdp_2011(2.8).gdp_2012(-0.2)
-				.gdp_2013(0.3).gdp_2014(1.2).build();
+
+		Mockito.when(countryRepositoryImpl.findByCountryName("Poland")).thenReturn(poland);
+		GrosDomesticProduct domesticProduct = entityToXmlMapper.grosDomesticProductEntityToGrossDomesticProduct(poland);
+
 		assertNotNull(domesticProduct);
-		assertEquals(gdpFinland, domesticProduct);
+		assertEquals(3.9, domesticProduct.getGdp_2003(), 0);
+		assertEquals(5.3, domesticProduct.getGdp_2004(), 0);
+		assertEquals(3.6, domesticProduct.getGdp_2005(), 0);
+		assertEquals(6.2, domesticProduct.getGdp_2006(), 0);
+		assertEquals(6.8, domesticProduct.getGdp_2007(), 0);
+		assertEquals(5.1, domesticProduct.getGdp_2008(), 0);
+		assertEquals(1.6, domesticProduct.getGdp_2009(), 0);
+		assertEquals(3.9, domesticProduct.getGdp_2010(), 0);
+		assertEquals(4.3, domesticProduct.getGdp_2011(), 0);
+		assertEquals(2.0, domesticProduct.getGdp_2012(), 0);
+		assertEquals(1.2, domesticProduct.getGdp_2013(), 0);
+		assertEquals(2.2, domesticProduct.getGdp_2014(), 0);
 	}
 
 	@Test
 	public void conventObjectToGdpCountryNameAndYerListResponse() {
-		List<Object[]> objects = countryRepositoryImpl.findGdpByYear(2003);
+		Object[] nameUnemployment = { "Poland", 3.9 };
+		List<Object[]> objects = new ArrayList<>();
+		objects.add(nameUnemployment);
+		Mockito.when(countryRepositoryImpl.findGdpByYear(2003)).thenReturn(objects);
 		GdpByYearResponse response = entityToXmlMapper.conventObjectToGdpCountryNameAndYerListResponse(objects);
-		assertEquals("Austria", response.getCountryNameAndGdp().get(0).getCountryName());
-		assertEquals(0.9, response.getCountryNameAndGdp().get(0).getGdp(), 0);
+		assertEquals("Poland", response.getCountryNameAndGdp().get(0).getCountryName());
+		assertEquals(3.9, response.getCountryNameAndGdp().get(0).getGdp(), 0);
+
+	}
+
+	public CountryEntity preparePolandObject() {
+
+		CountryEntity poland = new CountryEntity();
+		poland.setCountryCode("PL");
+		poland.setCountryName("Poland");
+
+		CountryDetailsEntity polandDetails = new CountryDetailsEntity();
+		polandDetails.setArea(312879);
+		polandDetails.setCapital("Warszawa");
+		polandDetails.setCurency("PL");
+		polandDetails.setGrosDomesticProduct(487600000000L);
+		polandDetails.setGrosDomesticProductPerPerson(12538);
+		polandDetails.setPopulation(38544000);
+		poland.setDetails(polandDetails);
+
+		UnemploymentEntity polandUnemployment = new UnemploymentEntity();
+		polandUnemployment.setUnemployment_2003(19.8);
+		polandUnemployment.setUnemployment_2004(19.1);
+		polandUnemployment.setUnemployment_2005(17.9);
+		polandUnemployment.setUnemployment_2006(13.9);
+		polandUnemployment.setUnemployment_2007(9.6);
+		polandUnemployment.setUnemployment_2008(7.1);
+		polandUnemployment.setUnemployment_2009(8.1);
+		polandUnemployment.setUnemployment_2010(9.7);
+		polandUnemployment.setUnemployment_2011(9.7);
+		polandUnemployment.setUnemployment_2012(10.1);
+		poland.setUnemployment(polandUnemployment);
+
+		GrosDomesticProductYearToYearEntity polandGDP = new GrosDomesticProductYearToYearEntity();
+		polandGDP.setGdp_2003(3.9);
+		polandGDP.setGdp_2004(5.3);
+		polandGDP.setGdp_2005(3.6);
+		polandGDP.setGdp_2006(6.2);
+		polandGDP.setGdp_2007(6.8);
+		polandGDP.setGdp_2008(5.1);
+		polandGDP.setGdp_2009(1.6);
+		polandGDP.setGdp_2010(3.9);
+		polandGDP.setGdp_2011(4.3);
+		polandGDP.setGdp_2012(2.0);
+		polandGDP.setGdp_2013(1.2);
+		polandGDP.setGdp_2014(2.2);
+		poland.setGrosDomesticProductYearToYear(polandGDP);
+
+		return poland;
 
 	}
 }
