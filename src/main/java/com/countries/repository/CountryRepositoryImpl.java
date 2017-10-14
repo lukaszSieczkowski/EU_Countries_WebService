@@ -16,10 +16,12 @@ import com.countries.entity.CountryEntity;
 @Repository
 public class CountryRepositoryImpl implements CountryRepository {
 
-	public CountryEntity findByCountryCode(String countryCode) {
+	EntityManagerFactory emFactory;
+	EntityManager entityManager;
 
-		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("myPersistanceUnit");
-		EntityManager entityManager = emFactory.createEntityManager();
+	public CountryEntity findByCountryCode(String countryCode) {
+		emFactory = Persistence.createEntityManagerFactory("myPersistanceUnit");
+		entityManager = emFactory.createEntityManager();
 		Query query = entityManager
 				.createQuery("Select p from CountryEntity p where p.countryCode = '" + countryCode + "'");
 		CountryEntity countryEntity = (CountryEntity) query.getSingleResult();

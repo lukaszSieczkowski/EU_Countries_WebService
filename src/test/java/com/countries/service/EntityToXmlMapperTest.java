@@ -21,8 +21,11 @@ import com.countries.entity.GrosDomesticProductYearToYearEntity;
 import com.countries.entity.UnemploymentEntity;
 import com.countries.model.Country;
 import com.countries.model.CountryDetails;
+import com.countries.model.CountryNameAndGdp;
+import com.countries.model.CountryNameAndUnemployment;
 import com.countries.model.GrosDomesticProduct;
 import com.countries.model.Unemployment;
+import com.countries.model.response.GdpByCountryNameAndYearResponse;
 import com.countries.model.response.GdpByYearResponse;
 import com.countries.model.response.UnemploymentByCountryNameAndYearResponse;
 import com.countries.model.response.UnemploymentByYearResponse;
@@ -99,8 +102,10 @@ public class EntityToXmlMapperTest {
 		Object[] nameUnemployment = { "Poland", 17.9 };
 		List<Object[]> objects = new ArrayList<>();
 		objects.add(nameUnemployment);
-		UnemploymentByYearResponse unemploymentByCountryNameAll = entityToXmlMapper
-				.conventObjectToUnemploymentCountryNameAndYerListResponse(objects);
+		List<CountryNameAndUnemployment> countryNameUndUnemploymentList = entityToXmlMapper
+				.conventObjectToUnemploymentCountryNameAndYer(objects);
+		UnemploymentByYearResponse unemploymentByCountryNameAll = new UnemploymentByYearResponse();
+		unemploymentByCountryNameAll.setCountryNameAndUnemployment(countryNameUndUnemploymentList);
 		assertEquals("Poland", unemploymentByCountryNameAll.getCountryNameAndUnemployment().get(0).getCountryName());
 		assertEquals(17.9, unemploymentByCountryNameAll.getCountryNameAndUnemployment().get(0).getUnemployment(), 0);
 	}
@@ -129,9 +134,11 @@ public class EntityToXmlMapperTest {
 		Object[] nameUnemployment = { "Poland", 3.9 };
 		List<Object[]> objects = new ArrayList<>();
 		objects.add(nameUnemployment);
-		GdpByYearResponse response = entityToXmlMapper.conventObjectToGdpCountryNameAndYerListResponse(objects);
-		assertEquals("Poland", response.getCountryNameAndGdp().get(0).getCountryName());
-		assertEquals(3.9, response.getCountryNameAndGdp().get(0).getGdp(), 0);
+		List<CountryNameAndGdp> gdpCountryNameAndYerList = entityToXmlMapper
+				.conventObjectToGdpCountryNameAndYer(objects);
+
+		assertEquals("Poland", gdpCountryNameAndYerList.get(0).getCountryName());
+		assertEquals(3.9, gdpCountryNameAndYerList.get(0).getGdp(), 0);
 
 	}
 

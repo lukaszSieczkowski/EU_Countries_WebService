@@ -123,25 +123,6 @@ public class EntityToXmlMapper {
 		return unemploymentByCountryNameAndYearResponse;
 	}
 
-	public UnemploymentByYearResponse conventObjectToUnemploymentCountryNameAndYerListResponse(List<Object[]> object) {
-
-		UnemploymentByYearResponse unemploymentByCountryNameAll = new UnemploymentByYearResponse();
-		List<CountryNameAndUnemployment> countryNameAndUnemploymentList = new ArrayList<>();
-		for (Object[] p : object) {
-
-			String countryName = (String) p[0];
-			double unemployment = (double) p[1];
-			CountryNameAndUnemployment countryNameAndUnemployment = new CountryNameAndUnemployment();
-			countryNameAndUnemployment.setCountryName(countryName);
-			countryNameAndUnemployment.setUnemployment(unemployment);
-			countryNameAndUnemploymentList.add(countryNameAndUnemployment);
-
-		}
-		unemploymentByCountryNameAll.setCountryNameAndUnemployment(countryNameAndUnemploymentList);
-		return unemploymentByCountryNameAll;
-
-	}
-
 	public GrosDomesticProduct grosDomesticProductEntityToGrossDomesticProduct(CountryEntity countryEntity) {
 		GrosDomesticProductYearToYearEntity grosDomesticProductYearToYearEntity = countryEntity
 				.getGrosDomesticProductYearToYear();
@@ -161,15 +142,27 @@ public class EntityToXmlMapper {
 		return grosDomesticProduct;
 	}
 
-	public GdpByCountryNameAndYearResponse gdpByCountryNameAndYearToCountryNameAndyearResponse(Double gdp) {
-		GdpByCountryNameAndYearResponse gdpByCountryNameAndYearResponse = new GdpByCountryNameAndYearResponse();
-		gdpByCountryNameAndYearResponse.setGdp(gdp);
-		return gdpByCountryNameAndYearResponse;
+	
+
+	public List<CountryNameAndUnemployment> conventObjectToUnemploymentCountryNameAndYer(List<Object[]> object) {
+
+		List<CountryNameAndUnemployment> countryNameAndUnemploymentList = new ArrayList<>();
+		for (Object[] p : object) {
+
+			String countryName = (String) p[0];
+			double unemployment = (double) p[1];
+			CountryNameAndUnemployment countryNameAndUnemployment = new CountryNameAndUnemployment();
+			countryNameAndUnemployment.setCountryName(countryName);
+			countryNameAndUnemployment.setUnemployment(unemployment);
+			countryNameAndUnemploymentList.add(countryNameAndUnemployment);
+		}
+
+		return countryNameAndUnemploymentList;
+
 	}
 
-	public GdpByYearResponse conventObjectToGdpCountryNameAndYerListResponse(List<Object[]> object) {
+	public List<CountryNameAndGdp> conventObjectToGdpCountryNameAndYer(List<Object[]> object) {
 
-		GdpByYearResponse gdpByYearResponse = new GdpByYearResponse();
 		List<CountryNameAndGdp> countryNameAndGdpList = new ArrayList<>();
 		for (Object[] p : object) {
 
@@ -178,12 +171,15 @@ public class EntityToXmlMapper {
 			CountryNameAndGdp countryNameAndGdp = new CountryNameAndGdp();
 			countryNameAndGdp.setCountryName(countryName);
 			countryNameAndGdp.setGdp(gdp);
-			System.out.println(countryName);
-			System.out.println(gdp);
 			countryNameAndGdpList.add(countryNameAndGdp);
 		}
-		gdpByYearResponse.setCountryNameAndGdp(countryNameAndGdpList);
-		return gdpByYearResponse;
-	}
 
+		return countryNameAndGdpList;
+	}
+	
+	public GdpByCountryNameAndYearResponse gdpByCountryNameAndYearToCountryNameAndyearResponse(Double gdp) {
+		GdpByCountryNameAndYearResponse gdpByCountryNameAndYearResponse = new GdpByCountryNameAndYearResponse();
+		gdpByCountryNameAndYearResponse.setGdp(gdp);
+		return gdpByCountryNameAndYearResponse;
+	}
 }
